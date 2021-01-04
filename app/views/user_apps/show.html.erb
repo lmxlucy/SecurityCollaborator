@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @user_app.user_id %>
+</p>
+
+<p>
+  <strong>App:</strong>
+  <%= @user_app.app_id %>
+</p>
+
+<p>
+  <strong>Q1:</strong>
+  <%= @user_app.q1 %>
+</p>
+
+<p>
+  <strong>Q2:</strong>
+  <%= @user_app.q2 %>
+</p>
+
+<p>
+  <strong>Q3:</strong>
+  <%= @user_app.q3 %>
+</p>
+
+<p>
+  <strong>Q4:</strong>
+  <%= @user_app.q4 %>
+</p>
+
+<p>
+  <strong>Q5:</strong>
+  <%= @user_app.q5 %>
+</p>
+
+<p>
+  <strong>Q6:</strong>
+  <%= @user_app.q6 %>
+</p>
+
+<%= link_to 'Edit', edit_user_app_path(@user_app) %> |
+<%= link_to 'Back', user_apps_path %>
