@@ -1,6 +1,5 @@
-<h1>Editing User</h1>
+<%= render partial: "partials/add_partner_form_structure", 
+    locals: {object: @user, 
+    type_of_form: "Add Your Partner",
+    fields: "edit_fields"} %>
 
-<%= render 'form', user: @user %>
-
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>

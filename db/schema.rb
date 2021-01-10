@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_04_182428) do
+ActiveRecord::Schema.define(version: 2021_01_10_062122) do
 
   create_table "apps", force: :cascade do |t|
     t.string "name"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2021_01_04_182428) do
     t.string "q6"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "accessed_today"
     t.index ["app_id"], name: "index_user_apps_on_app_id"
     t.index ["user_id"], name: "index_user_apps_on_user_id"
   end

@@ -1,0 +1,3 @@
+<%= f.simple_fields_for :user_apps do |user_apps_form| %>
+    <%= user_apps_form.input :accessed_today, label: user_apps_form.object.app.name.split.map(&:capitalize)*' ' %>
+<% end %>

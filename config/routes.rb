@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { registrations: "registrations" }
   resources :user_apps
   resources :messages
   resources :apps
   resources :users
+  
   devise_scope :user do
     authenticated :user do
       root 'home#index', as: :authenticated_root
@@ -12,5 +13,12 @@ Rails.application.routes.draw do
       root 'devise/sessions#new', as: :unauthenticated_root
     end
   end
+  
+  get 'users/:id/edit_apps', to: 'users#edit_apps', as: :edit_apps
+  post 'users/:id/edit_apps', to: 'users#update_uapps', as: :update_uapps
+
+  get 'users/:id/edit_user_apps_1', to: 'users#edit_user_apps_1', as: :edit_user_apps_1
+  post 'users/:id/edit_user_apps_1', to: 'users#update_uapps_1', as: :update_uapps_1
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

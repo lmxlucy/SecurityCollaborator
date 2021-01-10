@@ -7,6 +7,7 @@
     <tr>
       <th>User</th>
       <th>App</th>
+      <th>Accessed Today?</th>
       <th>Q1</th>
       <th>Q2</th>
       <th>Q3</th>
@@ -20,8 +21,9 @@
   <tbody>
     <% @user_apps.each do |user_app| %>
       <tr>
-        <td><%= user_app.user_id %></td>
-        <td><%= user_app.app_id %></td>
+        <td><%= user_app.user.email %></td>
+        <td><%= user_app.app.name %></td>
+        <td><%= user_app.accessed_today %></td>
         <td><%= user_app.q1 %></td>
         <td><%= user_app.q2 %></td>
         <td><%= user_app.q3 %></td>

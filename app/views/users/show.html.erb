@@ -1,13 +1,11 @@
-<p id="notice"><%= notice %></p>
-
 <p>
-  <strong>Username:</strong>
-  <%= @user.username %>
+  <strong>Me:</strong>
+  <%= @user.email %>
 </p>
 
 <p>
   <strong>Partner:</strong>
-  <%= @user.partner_id %>
+  <%= @user.partner.email %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
