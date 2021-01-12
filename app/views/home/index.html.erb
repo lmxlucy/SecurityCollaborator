@@ -1,3 +1,8 @@
 <h1>WELCOME <%= current_user.email %></h1>
-<%= link_to "START TODAY'S EVALUATION", edit_user_apps_1_path(current_user) %> 
+<h3>Partner: <%= current_user.partner.email %></h3>
+<%= link_to "START TODAY'S EVALUATION", edit_user_apps_3_path(current_user) %> 
+<%= link_to "VIEW HISTORY", messages_path %> 
 <%= link_to "SIGN OUT", destroy_user_session_path, method: :delete %> 
+<% if current_user.messages.count == 10 %>
+    <%= link_to "SEE DETAILED REPORT", user_path(current_user.id) %> 
+<% end %>

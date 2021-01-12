@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_10_062122) do
+ActiveRecord::Schema.define(version: 2021_01_12_072407) do
 
   create_table "apps", force: :cascade do |t|
     t.string "name"
@@ -18,12 +18,35 @@ ActiveRecord::Schema.define(version: 2021_01_10_062122) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "messages", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.date "date"
-    t.text "message"
+  create_table "devices", force: :cascade do |t|
+    t.text "q1"
+    t.string "q2"
+    t.string "q3"
+    t.string "q4"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id", null: false
+    t.string "q5"
+    t.string "q6"
+    t.boolean "q1_improved"
+    t.boolean "q1_improved_2"
+    t.boolean "q2_improved"
+    t.boolean "q3_improved"
+    t.boolean "q4_improved"
+    t.boolean "q5_improved"
+    t.boolean "q6_improved"
+    t.index ["user_id"], name: "index_devices_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.text "alerts"
+    t.text "reminders"
+    t.text "device_reminders"
+    t.text "device_alerts"
+    t.date "date"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
@@ -35,16 +58,23 @@ ActiveRecord::Schema.define(version: 2021_01_10_062122) do
     t.string "q3"
     t.string "q4"
     t.string "q5"
-    t.string "q6"
+    t.text "q6", default: "--- []\n"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "accessed_today"
+    t.boolean "q1_improved"
+    t.boolean "q2_improved"
+    t.boolean "q3_improved"
+    t.boolean "q4_improved"
+    t.boolean "q5_improved"
+    t.boolean "q6_mine_improved"
+    t.boolean "q6_partner_improved"
+    t.boolean "q6_public_improved"
     t.index ["app_id"], name: "index_user_apps_on_app_id"
     t.index ["user_id"], name: "index_user_apps_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "username"
     t.integer "partner_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -58,6 +88,7 @@ ActiveRecord::Schema.define(version: 2021_01_10_062122) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "devices", "users"
   add_foreign_key "messages", "users"
   add_foreign_key "user_apps", "apps"
   add_foreign_key "user_apps", "users"

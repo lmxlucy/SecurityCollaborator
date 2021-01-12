@@ -1,0 +1,16 @@
+<%= f.simple_fields_for :user_apps do |user_apps_form| %>
+    <% if ["No" || "I don't know"].include? user_apps_form.object.q1 %>
+        <%= user_apps_form.label :q1_improved, "I have installed a multi-factor authentication for " + user_apps_form.object.app.name.split.map(&:capitalize)*' ' %>
+        <%= user_apps_form.input :q1_improved, label: false %></br></br>
+    <% end %>
+<% end %>
+<%= f.simple_fields_for :user_apps do |user_apps_form| %>
+    <% if ["No" || "I don't know"].include? user_apps_form.object.q2 %>
+        <%= user_apps_form.label :q2_improved, "I have created a strong password for my" + 
+        user_apps_form.object.app.name.split.map(&:capitalize)*' ' + 
+        " account, which contains special characters and a combinaiton of letters, numbers, and symbols." %>
+        <%= user_apps_form.input :q2_improved, label: false %></br></br>
+    <% end %>
+<% end %>
+
+

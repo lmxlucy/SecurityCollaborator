@@ -1,12 +1,28 @@
+<h4>Last Day Improvement</h4>
 <p>
   <strong>Me:</strong>
   <%= @user.email %>
 </p>
+
+<% @user.user_apps.each do |user_app|%>
+  <% if user_app.q1_improved %>
+     <%= App.find(user_app.app_id).name %> 
+     <p>Q1 messsage: YES</p>
+  <% elsif !user_app.q1_improved %>
+     <%= App.find(user_app.app_id).name %> 
+     <p>Q1 messsage: NO</p>
+  <%end%>
+<% end %>
 
 <p>
   <strong>Partner:</strong>
   <%= @user.partner.email %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<% @user.partner.user_apps.each do |user_app|%>
+  <% if user_app.q1_improved %>
+     <%= App.find(user_app.app_id).name %> Q1 messsage: YES
+  <% elsif !user_app.q1_improved %>
+     <%= App.find(user_app.app_id).name %> Q1 messsage: NO
+  <%end%>
+<% end %>

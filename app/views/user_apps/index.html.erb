@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>User ID</th>
       <th>User</th>
       <th>App</th>
       <th>Accessed Today?</th>
@@ -21,6 +22,7 @@
   <tbody>
     <% @user_apps.each do |user_app| %>
       <tr>
+        <td><%= user_app.user.id %></td>
         <td><%= user_app.user.email %></td>
         <td><%= user_app.app.name %></td>
         <td><%= user_app.accessed_today %></td>
@@ -37,7 +39,6 @@
     <% end %>
   </tbody>
 </table>
-
 <br>
 
 <%= link_to 'New User App', new_user_app_path %>

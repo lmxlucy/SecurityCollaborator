@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_apps, 
+                          :update_uapps, :edit_user_apps_1, :edit_user_apps_2,
+                          :update_uapps_1, :update_uapps_2]
   before_action :authenticate_user!
   # GET /users
   # GET /users.json
@@ -31,7 +33,6 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
@@ -46,8 +47,8 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    if @user.update_attributes(user_params)
-      redirect_to authenticated_root_path
+    if @user.update(user_params)
+      redirect_to edit_user_apps_1_path
     else
       render action: 'edit'
     end
@@ -66,9 +67,6 @@ class UsersController < ApplicationController
   def edit_apps
     n = 10 - current_user.user_apps.length
     n.times { current_user.apps.build }
-    # 10.times do
-    #   current_user.apps.build
-    # end
   end
 
   def update_uapps
@@ -90,10 +88,10 @@ class UsersController < ApplicationController
   end
 
   def update_uapps_1
-    if @user.update_attributes(user_params)
+    if current_user.update(user_params)
       redirect_to edit_user_apps_2_path
     else
-      redirect_to edit_user_apps_1
+      redirect_to edit_user_apps_1_path
     end
   end
 
@@ -101,21 +99,55 @@ class UsersController < ApplicationController
   end
 
   def update_uapps_2
-    if @user.update_attributes(user_params)
-      redirect_to authenticated_root_path
+    if current_user.update(user_params)
+      redirect_to edit_device_questions_path
     else
       redirect_to edit_user_apps_2_path
+    end
+  end
+
+  def edit_user_apps_3
+  end
+
+  def update_uapps_3
+    if current_user.update(user_params)
+      redirect_to edit_user_apps_1_path(current_user)
+    else
+      redirect_to edit_user_apps_3_path
+    end
+  end
+
+  def edit_device_questions
+    @device = Device.find_or_create_by(user_id: current_user.id)
+  end
+
+  def update_device_questions
+    message = Message.find_or_create_by(user_id: current_user.id, date: Date.today)
+    if current_user.update(user_params)
+      redirect_to controller: 'messages', action: 'show', id: message.id
+    else
+      redirect_to edit_device_questions_path
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      if @current_user
+        @user = @current_user
+      else
+        @user = User.find(params[:id])
+      end
     end
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:email, :partner_id, apps_attributes: [:id, :name], user_apps_attributes: [:id, :accessed_today, :q1, :q2, :q3, :q4, :q5, :q6])
+      params.require(:user).permit(:email, :partner_id, apps_attributes: [:id, :name], 
+      user_apps_attributes: [:id, :accessed_today, :q1, :q2, :q3, :q4, :q5, {:q6 => []}, 
+      :q1_improved, :q2_improved, :q3_improved, :q4_improved, :q5_improved, 
+      :q6_mine_improved, :q6_partner_improved, :q6_public_improved],
+      messages_attributes: [:id, :user_id, :date], device_attributes: [:user_id, {:q1 => []}, 
+      :q2, :q3, :q4, :q5, :q6, :q1_improved, :q1_improved_2, :q2_improved, :q3_improved, 
+      :q4_improved, :q5_improved, :q6_improved])
     end
 end

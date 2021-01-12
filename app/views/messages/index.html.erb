@@ -1,31 +1,66 @@
 <p id="notice"><%= notice %></p>
-
+<h1>Security Evaluation History</h1>
 <h1>Messages</h1>
-
 <table>
   <thead>
     <tr>
       <th>User</th>
       <th>Date</th>
-      <th>Message</th>
+      <th>Accounts Alerts</th>
+      <th>Accounts Reminders</th>
+      <th>Device Alerts</th>
+      <th>Device Reminders</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @messages.each do |message| %>
-      <tr>
-        <td><%= message.user_id %></td>
-        <td><%= message.date %></td>
-        <td><%= message.message %></td>
-        <td><%= link_to 'Show', message %></td>
-        <td><%= link_to 'Edit', edit_message_path(message) %></td>
-        <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <% if message.user_id == current_user.id %>
+        <tr>
+          <td><%= message.user_id %></td>
+          <td><%= message.created_at.to_date %></td>
+          <td><%= message.alerts %></td>
+          <td><%= message.reminders %></td>
+          <td><%= message.device_alerts %></td>
+          <td><%= message.device_reminders %></td>
+          <td><%= link_to 'Show', message %></td>
+          <td><%= link_to 'Edit', edit_message_path(message) %></td>
+          <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
 
-<br>
+<table>
+  <thead>
+    <tr>
+      <th>Partner</th>
+      <th>Date</th>
+      <th>Accounts Alerts</th>
+      <th>Accounts Reminders</th>
+      <th>Device Alerts</th>
+      <th>Device Reminders</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
-<%= link_to 'New Message', new_message_path %>
+  <tbody>
+    <% @messages.each do |message| %>
+      <% if message.user_id == current_user.partner_id %>
+        <tr>
+            <td><%= message.user_id %></td>
+            <td><%= message.created_at.to_date %></td>
+            <td><%= message.alerts %></td>
+            <td><%= message.reminders %></td>
+            <td><%= message.device_alerts %></td>
+            <td><%= message.device_reminders %></td>
+            <td><%= link_to 'Show', message %></td>
+            <td><%= link_to 'Edit', edit_message_path(message) %></td>
+            <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

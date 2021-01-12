@@ -1,19 +1,70 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>User:</strong>
-  <%= @message.user_id %>
-</p>
-
+<h4> Security Evaluation</h4>
 <p>
   <strong>Date:</strong>
   <%= @message.date %>
 </p>
 
-<p>
-  <strong>Message:</strong>
-  <%= @message.message %>
-</p>
+<%# save to message %>
+<% current_user.user_apps.each do |user_app|%>
+  <% if user_app.q1 == 'No' %>
+    <% @message.alerts << "Your " + App.find(user_app.app_id).name + " account is vulnerable to hacks. Please click here to learn how to set up a multi-factor authentication as soon as possible!" %>   
+  <% elsif user_app.q1 == "I don't know" %>
+     <% @message.reminders <<  "Your " + App.find(user_app.app_id).name + " account maybe vulnerable to hacks. Please click here to learn how to set up a multi-factor authentication as soon as possible!" %>
+  <%end%>
+  <% if user_app.q2 == 'No' %>
+    <% @message.alerts << "Your " + App.find(user_app.app_id).name + " password is not strong enough against hacks. Please click here to learn how to set up strong password and update it as soon as possible!" %>  
+  <%end%>
+  <% if user_app.q3 == 'Yes' %>
+    <% @message.alerts << "Please ensure that the person/people you are sharing " + App.find(user_app.app_id).name + " account with are using this account and their devices securely." %>  
+  <%end%>
+  <% if user_app.q4 == 'No' %>
+    <% @message.alerts << "For your " + App.find(user_app.app_id).name + " account's security, you should update the password every 30, 60, or 90 days." %>  
+  <%end%>
+  <% if user_app.q5 == 'No' %>
+    <% @message.alerts << "Please update your " + App.find(user_app.app_id).name + " account to the latest version as soon as possible!" %>  
+  <%end%>
+<%end%>
 
-<%= link_to 'Edit', edit_message_path(@message) %> |
-<%= link_to 'Back', messages_path %>
+<% @devices.each do |d|%>
+  <% if d.q2 == "No" %>
+    <% @message.device_alerts << "Please set up a PIN, passcode or fingerprint for your devices as soon as possible." %>
+  <% elsif d.q2 == "I don't know" %>
+    <% @message.device_reminders << "You may need to check if you have PIN, passcode or fingerprint for all your devices and set up one if neccessary." %>
+  <% end %>
+<%end%>
+
+<%# show message %>
+<% if !@message.alerts.empty? %>
+  <h4>Accounts Alerts</h4>
+  <% @message.alerts.each do |alert| %>
+    <%= alert %> </br>
+  <%end%>
+<%end%>
+<% if !@message.reminders.empty? %>
+  <h4>Accounts Reminders</h4>
+  <% @message.reminders.each do |reminder| %>
+    <%= reminder %> </br>
+  <%end%>
+<%end%>   
+<% if !@message.device_reminders.empty? %>
+  <h4>Device Reminders</h4>
+  <% @message.device_reminders.each do |d_reminder| %>
+    <%= d_reminder %> </br>
+  <%end%>
+<%end%>    
+<% if !@message.device_alerts.empty? %>
+  <h4>Device Alerts</h4>
+  <% @message.device_alerts.each do |d_alert| %>
+    <%= d_alert %> </br>
+  <%end%>
+<%end%>
+<% if @message.alerts.empty? && @message.reminders.empty? && @message.device_alerts.empty? && @message.device_reminders.empty? %>
+  <h4>Hooray! You are doing great! Your accounts and devices are very secure! 
+  Please ensure your partner is also doing well and help him/her out when nesseccary :)</h4>
+<% end %>
+</br></br>
+
+
+<%= link_to "SEE MY PARTNER'S", messages_path %>  |  
+<%= link_to 'HOME', authenticated_root_path %>

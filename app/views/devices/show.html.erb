@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Q1:</strong>
+  <%= @device.q1 %>
+</p>
+
+<p>
+  <strong>Q2:</strong>
+  <%= @device.q2 %>
+</p>
+
+<p>
+  <strong>Q3:</strong>
+  <%= @device.q3 %>
+</p>
+
+<p>
+  <strong>Q4:</strong>
+  <%= @device.q4 %>
+</p>
+
+<%= link_to 'Edit', edit_device_path(@device) %> |
+<%= link_to 'Back', devices_path %>

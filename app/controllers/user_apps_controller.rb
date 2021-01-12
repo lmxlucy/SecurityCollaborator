@@ -69,6 +69,9 @@ class UserAppsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_app_params
-      params.require(:user_app).permit(:user_id, :app_id, :q1, :q2, :q3, :q4, :q5, :q6)
+      params.require(:user_app).permit(:user_id, :app_id, :accessed_today, 
+      :q1, :q2, :q3, :q4, :q5, {:q6 => []}, :q1_improved, :q2_improved, 
+      :q3_improved, :q4_improved, :q5_improved, :q6_mine_improved, 
+      :q6_partner_improved, :q6_public_improved)
     end
 end

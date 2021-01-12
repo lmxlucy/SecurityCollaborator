@@ -1,0 +1,5 @@
+<%= render partial: "partials/form_structure", 
+    locals: {object: current_user, 
+    method_url: update_device_questions_path,
+    type_of_form: "Answer the following questions based on the device(s) you used to access your digital account(s) today",
+    fields: "device_fields.html.erb"} %>

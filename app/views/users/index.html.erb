@@ -1,8 +1,8 @@
 <h1>Users</h1>
-
 <table>
   <thead>
     <tr>
+      <th>User ID</th>
       <th>Email</th>
       <th>Partner</th>
       <th colspan="3"></th>
@@ -12,6 +12,7 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
+        <td><%= user.id %></td>
         <td><%= user.email %></td>
         <td><%= user.partner_id %></td>
         <td><%= link_to 'Show', user %></td>

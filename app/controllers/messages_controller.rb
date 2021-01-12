@@ -10,6 +10,7 @@ class MessagesController < ApplicationController
   # GET /messages/1
   # GET /messages/1.json
   def show
+    @devices = Device.where(:user_id=>current_user.id)
   end
 
   # GET /messages/new
@@ -60,7 +61,8 @@ class MessagesController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_message
@@ -69,6 +71,7 @@ class MessagesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def message_params
-      params.require(:message).permit(:user_id, :date, :message)
+      params.require(:message).permit(:user_id, :alerts, :reminders, 
+      :device_alerts, :device_reminders)
     end
 end

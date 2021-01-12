@@ -8,8 +8,11 @@ class User < ApplicationRecord
     has_many :user_apps, dependent: :destroy
     has_many :apps, through: :user_apps
     has_many :messages, dependent: :destroy
+    has_one :device, dependent: :destroy, :inverse_of => :user
     accepts_nested_attributes_for :apps
     accepts_nested_attributes_for :user_apps
+    accepts_nested_attributes_for :messages
+    accepts_nested_attributes_for :device
     
     scope :alphabetical, -> { order('email') }
     scope :singles, -> { where('partner_id IS NULL') }
