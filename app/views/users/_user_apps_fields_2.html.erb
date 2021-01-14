@@ -43,9 +43,9 @@
 <%= f.simple_fields_for :user_apps do |user_apps_form| %>
     <% if user_apps_form.object.accessed_today %>
         <%= user_apps_form.label :q6, user_apps_form.object.app.name.split.map(&:capitalize)*' ' %>
-        <%= select_tag :q6, options_for_select(['My mobile phone', 'My tablet', 
+        <%= user_apps_form.select :q6, options_for_select(['My mobile phone', 'My tablet', 
         "My laptop", "My desktop computer", "My partner's mobile phone", 
         "My partner's tablet", "My partner's laptop", "My partner's desktop computer", 
-        "Devices from my workplace or public"]), multiple: true %>
+        "Devices from my workplace or public"]), {multiple: true} %>
     <% end %>
 <% end %>
