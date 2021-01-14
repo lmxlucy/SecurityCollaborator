@@ -60,6 +60,7 @@
   <%end%>
 <%end%>
 <% if @message.alerts.empty? && @message.reminders.empty? && @message.device_alerts.empty? && @message.device_reminders.empty? %>
+  <% @message.perfect = true %>
   <h4>Hooray! You are doing great! Your accounts and devices are very secure! 
   Please ensure your partner is also doing well and help him/her out when nesseccary :)</h4>
 <% end %>

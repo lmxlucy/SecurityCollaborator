@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_12_072407) do
+ActiveRecord::Schema.define(version: 2021_01_13_195944) do
 
   create_table "apps", force: :cascade do |t|
     t.string "name"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2021_01_12_072407) do
     t.text "device_reminders"
     t.text "device_alerts"
     t.date "date"
+    t.boolean "perfect", default: false
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
