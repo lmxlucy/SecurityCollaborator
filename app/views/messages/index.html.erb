@@ -15,13 +15,13 @@
   </thead>
 
   <tbody>
-    <% @messages.each do |message| %>
+    <% current_user.messages.each do |message| %>
       <% if message.user_id == current_user.id %>
         <tr>
           <td><%= message.user_id %></td>
-          <td><%= message.created_at.to_date %></td>
-          <td><%= message.alerts %></td>
-          <td><%= message.reminders %></td>
+          <td><%= message.date %></td>
+          <td><%= simple_format(message.alerts) %></td>
+          <td><%= simple_format(message.reminders) %></td>
           <td><%= message.device_alerts %></td>
           <td><%= message.device_reminders %></td>
           <td><%= link_to 'Show', message %></td>
@@ -32,7 +32,17 @@
     <% end %>
   </tbody>
 </table>
-
+<% @messages.each do |message| %>
+  <% if message.user_id == current_user.id %>
+    <%= message.inspect %>
+  <% end %>
+<% end %>
+</br>
+<% current_user.messages.each do |message| %>
+  <% if message.user_id == current_user.id %>
+    <%= message.inspect %>
+  <% end %>
+<% end %>
 <table>
   <thead>
     <tr>
