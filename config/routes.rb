@@ -29,6 +29,9 @@ Rails.application.routes.draw do
 
   get 'users/:id/edit_device_questions', to: 'users#edit_device_questions', as: :edit_device_questions
   post 'users/:id/edit_device_questions', to: 'users#update_device_questions', as: :update_device_questions
-
+  
+  get 'users/:id/show_today_result', to: 'users#show_today_result', as: :show_today_result
+  
+  get 'users/popup_user_apps_q1', to: 'users#popup_user_apps_q1', as: :popup_user_apps_q1
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

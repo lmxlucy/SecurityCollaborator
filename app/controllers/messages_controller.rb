@@ -10,7 +10,6 @@ class MessagesController < ApplicationController
   # GET /messages/1
   # GET /messages/1.json
   def show
-    @devices = Device.where(:user_id=>current_user.id)
   end
 
   # GET /messages/new

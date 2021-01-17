@@ -1,4 +1,8 @@
 <%= f.simple_fields_for :device do |d| %></br>
+    <%= d.label :q1, "How do you track your passwords online? (check all that apply)" %>
+    <%= d.select :q1, options_for_select(['Memorize them in mind', 'Write them down', 
+    "Save it in a file on the computer", "Use the same password for multiple accounts", 
+    "Use a password management system (eg. password manager like 1Password and LastPass)"]), {}, {multiple: true} %>
     <%= d.label :q2, "Are you using a PIN, passcode or fingerprint to log in to your devices?" %>
     <%= d.select :q2, ['Yes', 'No', "I don't know"] %> </br></br>
     <%= d.label :q3, "Do your devices auto-lock after a certain time of no use?" %>
@@ -10,4 +14,3 @@
     <%= d.label :q6, "Are you sharing any of your devices with other people? (*sharing as having access to or have used it)" %>
     <%= d.select :q6, ['Yes', 'No'] %> </br></br>
 <% end %>
-<%= current_user.user_apps.inspect %>

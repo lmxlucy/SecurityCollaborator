@@ -1,0 +1,33 @@
+<h4> Security Evaluation</h4>
+<p>
+  <strong>Date:</strong>
+  <%= @message.date %>
+</p>
+</br></br>
+<% if !@message.alerts.empty? %>
+    <h4> Alerts </h4>
+    <% @message.alerts.each do |alert| %>
+        <%= alert %>
+    <% end %>
+<% end %>
+<% if !@message.reminders.empty? %>
+    <h4> Reminders </h4>
+    <% @message.reminders.each do |reminder| %>
+        <%= reminder %>
+    <% end %>
+<% end %>
+<% if !@message.device_alerts.empty? %>
+    <h4> Device Alerts </h4>
+    <% @message.device_alerts.each do |d_alert| %>
+        <%= d_alert %>
+    <% end %>
+<% end %>
+<% if !@message.device_reminders.empty? %>
+    <h4> Device Reminders </h4>
+    <% @message.device_reminders.each do |d_reminder| %>
+        <%= d_reminder %>
+    <% end %>
+<% end %>
+</br></br>
+<%= link_to "SEE MY PARTNER'S", messages_path %>  |  
+<%= link_to 'HOME', authenticated_root_path %>
