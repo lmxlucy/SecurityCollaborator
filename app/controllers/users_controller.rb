@@ -151,7 +151,7 @@ class UsersController < ApplicationController
       user_apps_attributes: [:id, :accessed_today, :q1, :q2, :q3, :q4, :q5, {:q6=>[]}, 
       :q1_improved, :q2_improved, :q3_improved, :q4_improved, :q5_improved, 
       :q6_mine_improved, :q6_partner_improved, :q6_public_improved],
-      messages_attributes: [:id, :user_id, :date], device_attributes: [:user_id, :q1, 
+      messages_attributes: [:id, :user_id, :date], device_attributes: [:user_id, {:q1=>[]}, 
       :q2, :q3, :q4, :q5, :q6, :q1_improved, :q1_improved_2, :q2_improved, :q3_improved, 
       :q4_improved, :q5_improved, :q6_improved])
     end
