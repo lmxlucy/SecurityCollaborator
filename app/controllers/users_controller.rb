@@ -271,6 +271,11 @@ class UsersController < ApplicationController
       end
     end
 
+    if @message.device_reminders.empty? && @message.device_alerts.empty? && @message.reminders.empty? && @message.alerts.empty?
+      @message.perfect = "Hooray! You are doing great! Your accounts and devices are very secure! Please ensure your partner is also doing well and help him/her out when nesseccary :)"
+    else
+      @message.perfect = ""
+    end
     @message.update(alerts: @message.alerts)
   end
 

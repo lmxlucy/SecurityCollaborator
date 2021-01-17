@@ -28,6 +28,10 @@
         <%= d_reminder %>
     <% end %>
 <% end %>
+<% if !@message.perfect.empty? %>
+    <%= @message.perfect %>
+<% end %>
 </br></br>
+
 <%= link_to "SEE MY PARTNER'S", messages_path %>  |  
 <%= link_to 'HOME', authenticated_root_path %>
