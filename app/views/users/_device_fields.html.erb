@@ -10,3 +10,4 @@
     <%= d.label :q6, "Are you sharing any of your devices with other people? (*sharing as having access to or have used it)" %>
     <%= d.select :q6, ['Yes', 'No'] %> </br></br>
 <% end %>
+<%= current_user.user_apps.inspect %>
