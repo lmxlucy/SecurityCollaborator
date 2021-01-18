@@ -35,3 +35,12 @@
 
 <%= link_to "SEE MY PARTNER'S", messages_path %>  |  
 <%= link_to 'HOME', authenticated_root_path %>
+
+<script>
+function openPopup(link)
+{
+    link.hide();
+    window.open(link.href,'q1_popup','toolbar=no,location=no,menubar=no,scrollbars=yes,resizable=no, width=200, height=100');
+    return false;
+}
+</script>
