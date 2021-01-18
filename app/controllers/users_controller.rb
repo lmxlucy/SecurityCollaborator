@@ -150,8 +150,8 @@ class UsersController < ApplicationController
         end
       end
       if user_app.q2 == 'No'
-        if !@message.alerts.include? "Your " + App.find(user_app.app_id).name + " password is not strong enough against hacks. Please click here to learn how to set up strong password and update it as soon as possible! "
-          @message.alerts << "Your " + App.find(user_app.app_id).name + " password is not strong enough against hacks. Please click here to learn how to set up strong password and update it as soon as possible! "  
+        if !@message.alerts.include? "Your " + App.find(user_app.app_id).name + " password is not strong enough against hacks. Please click here to learn how to set up strong password and update it as soon as possible!"
+          @message.alerts << "Your " + App.find(user_app.app_id).name + " password is not strong enough against hacks. Please click here to learn how to set up strong password and update it as soon as possible!"  
         end
       elsif user_app.q1 == "I don't know"
         if !@message.reminders.include? "Your " + App.find(user_app.app_id).name + " password may not be strong enough against hacks. Please click here to learn how to set up strong password and update it as soon as possible!"
@@ -211,23 +211,23 @@ class UsersController < ApplicationController
     end
 
     if d.q1.include? "Memorize them in mind"
-      if !@message.device_reminders.include? "Memorizing passwords is not safe! You may consider using a password management system (eg. 1Password, LastPass) to improve the security of your accounts when you have more."
-        @message.device_reminders << "Memorizing passwords is not safe! You may consider using a password management system (eg. 1Password, LastPass) to improve the security of your accounts when you have more."
+      if !@message.device_reminders.include? "Memorizing passwords is not safe! You may consider using a password management system (eg. https://1password.com, https://www.lastpass.com) to improve the security of your accounts when you have more."
+        @message.device_reminders << "Memorizing passwords is not safe! You may consider using a password management system (eg. https://1password.com, https://www.lastpass.com) to improve the security of your accounts when you have more."
       end
     end
     if d.q1.include? "Write them down"
-      if !@message.device_reminders.include? "Writing down the password is not the optimal solution! You may consider using a password management system (eg. 1Password, LastPass) to improve the security of your accounts when you have more."
-        @message.device_reminders << "Writing down the password is not the optimal solution! You may consider using a password management system (eg. 1Password, LastPass) to improve the security of your accounts when you have more."
+      if !@message.device_reminders.include? "Writing down the password is not the optimal solution! You may consider using a password management system (eg. https://1password.com, https://www.lastpass.com) to improve the security of your accounts when you have more."
+        @message.device_reminders << "Writing down the password is not the optimal solution! You may consider using a password management system (eg. https://1password.com, https://www.lastpass.com) to improve the security of your accounts when you have more."
       end
     end
     if d.q1.include? "Save it in a file on the computer"
-      if !@message.device_reminders.include? "Saving the password on local computer is not the optimal solution! You may consider using a password management system (eg. 1Password, LastPass) to improve the security of your accounts when you have more."
-        @message.device_reminders << "Saving the password on local computer is not the optimal solution! You may consider using a password management system (eg. 1Password, LastPass) to improve the security of your accounts when you have more."
+      if !@message.device_reminders.include? "Saving the password on local computer is not the optimal solution! You may consider using a password management system (eg. https://1password.com, https://www.lastpass.com) to improve the security of your accounts when you have more."
+        @message.device_reminders << "Saving the password on local computer is not the optimal solution! You may consider using a password management system (eg. https://1password.com, https://www.lastpass.com) to improve the security of your accounts when you have more."
       end
     end
     if d.q1.include? "Use the same password for multiple accounts"
-      if !@message.device_alerts.include? "Using the same password for more than one account is not secure! You should generate different passwords for different accounts. You may also consider using a password management system (eg. 1Password, LastPass) to improve the security of your accounts when you have more."
-        @message.device_alerts << "Using the same password for more than one account is not secure! You should generate different passwords for different accounts. You may also consider using a password management system (eg. 1Password, LastPass) to improve the security of your accounts when you have more."
+      if !@message.device_alerts.include? "Using the same password for more than one account is not secure! You should generate different passwords for different accounts. You may also consider using a password management system (eg. https://1password.com, https://www.lastpass.com) to improve the security of your accounts when you have more."
+        @message.device_alerts << "Using the same password for more than one account is not secure! You should generate different passwords for different accounts. You may also consider using a password management system (eg. https://1password.com, https://www.lastpass.com) to improve the security of your accounts when you have more."
       end
     end
     if d.q2 == "No"
@@ -285,6 +285,9 @@ class UsersController < ApplicationController
   end
 
   def popup_user_apps_q1
+  end
+
+  def popup_user_apps_q2
   end
   
   private
