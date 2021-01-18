@@ -197,10 +197,12 @@ class UsersController < ApplicationController
         if !@message.reminders.include? "You should check and make sure your devices are secure for the use of your " + App.find(user_app.app_id).name + " account. Click here for a security checklist." 
           @message.reminders << "You should check and make sure your devices are secure for the use of your " + App.find(user_app.app_id).name + " account. Click here for a security checklist." 
         end
+      end
       if (user_app.q6.include? "My partner's mobile phone") || (user_app.q6.include? "My partner's tablet") || (user_app.q6.include? "My partner's laptop") || (user_app.q6.include? "My partner's desktop computer")
         if !@message.reminders.include? "You should check and make sure your partner's devices are secure for the use of your " + App.find(user_app.app_id).name + " account. Click here for a security checklist." 
           @message.reminders << "You should check and make sure your partner's devices are secure for the use of your " + App.find(user_app.app_id).name + " account. Click here for a security checklist." 
         end
+      end
       if user_app.q6.include? "Devices from my workplace or public"
         if !@message.reminders.include? "You should log out " + App.find(user_app.app_id).name + " everytime you finish using and clear the cookies when neccessary."
           @message.reminders << "You should log out " + App.find(user_app.app_id).name + " everytime you finish using and clear the cookies when neccessary."
@@ -212,14 +214,17 @@ class UsersController < ApplicationController
       if !@message.device_reminders.include? "Memorizing passwords is not safe! You may consider using a password management system (eg. 1Password, LastPass) to improve the security of your accounts when you have more."
         @message.device_reminders << "Memorizing passwords is not safe! You may consider using a password management system (eg. 1Password, LastPass) to improve the security of your accounts when you have more."
       end
+    end
     if d.q1.include? "Write them down"
       if !@message.device_reminders.include? "Writing down the password is not the optimal solution! You may consider using a password management system (eg. 1Password, LastPass) to improve the security of your accounts when you have more."
         @message.device_reminders << "Writing down the password is not the optimal solution! You may consider using a password management system (eg. 1Password, LastPass) to improve the security of your accounts when you have more."
       end
+    end
     if d.q1.include? "Save it in a file on the computer"
       if !@message.device_reminders.include? "Saving the password on local computer is not the optimal solution! You may consider using a password management system (eg. 1Password, LastPass) to improve the security of your accounts when you have more."
         @message.device_reminders << "Saving the password on local computer is not the optimal solution! You may consider using a password management system (eg. 1Password, LastPass) to improve the security of your accounts when you have more."
       end
+    end
     if d.q1.include? "Use the same password for multiple accounts"
       if !@message.device_alerts.include? "Using the same password for more than one account is not secure! You should generate different passwords for different accounts. You may also consider using a password management system (eg. 1Password, LastPass) to improve the security of your accounts when you have more."
         @message.device_alerts << "Using the same password for more than one account is not secure! You should generate different passwords for different accounts. You may also consider using a password management system (eg. 1Password, LastPass) to improve the security of your accounts when you have more."
@@ -279,6 +284,9 @@ class UsersController < ApplicationController
     @message.update(alerts: @message.alerts)
   end
 
+  def popup_user_apps_q1
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

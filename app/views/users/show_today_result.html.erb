@@ -7,7 +7,10 @@
 <% if !@message.alerts.empty? %>
     <h4> Alerts </h4>
     <% @message.alerts.each do |alert| %>
-        <%= alert %>
+        <% if alert.include? 'account is vulnerable to hacks. Please click here to learn how to set up a multi-factor authentication as soon as possible!' %>
+            <% m = alert.split('here') %>
+            <%= m.first %> <%= link_to 'here' , popup_user_apps_q1_path, :onclick => 'return openPopup(this);' %> <%= m.last %>
+        <% end %>
     <% end %>
 <% end %>
 <% if !@message.reminders.empty? %>
@@ -35,12 +38,3 @@
 
 <%= link_to "SEE MY PARTNER'S", messages_path %>  |  
 <%= link_to 'HOME', authenticated_root_path %>
-
-<script>
-function openPopup(link)
-{
-    link.hide();
-    window.open(link.href,'q1_popup','toolbar=no,location=no,menubar=no,scrollbars=yes,resizable=no, width=200, height=100');
-    return false;
-}
-</script>
