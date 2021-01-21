@@ -1,20 +1,22 @@
 <div class="row">
   <div class="col s9">
-    <div class="card">    
+    <div class="card border-0">    
       <div class="card-content">
-        <span class="card-title"><%= type_of_form %></span>
+        <span class="card-title"><h4><%= type_of_form %></h4></span>
         <%= simple_form_for(object) do |f| %>
           <%= f.error_notification %>
           <div class="row">
-            <div class="form-inputs" style="text-align: center;">
-              <%= render partial: "#{fields}", locals: { f: f } %>
+          <div class="card-body">
+            <div class="form-group" >
+              <%= render partial: "#{fields}", locals: { f: f }, :class=>'form-control'  %>
+            </div>
           </div>
         </div>
       </div>
     </div>
       <div class="row">
         <div class="form-actions col s9">
-          <%= f.button :submit, 'Next' %>
+          <%= f.button :submit, 'Next', :class=>'btn btn-info' %>
         </div>
       </div>
     <% end %>

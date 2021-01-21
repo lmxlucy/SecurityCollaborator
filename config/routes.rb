@@ -32,7 +32,6 @@ Rails.application.routes.draw do
   
   get 'users/:id/show_today_result', to: 'users#show_today_result', as: :show_today_result
   
-  get 'popup_user_apps_q1', to: 'users#popup_user_apps_q1', as: :popup_user_apps_q1
   get 'popup_user_apps_q2', to: 'users#popup_user_apps_q2', as: :popup_user_apps_q2
   get 'popup_user_apps_q6', to: 'users#popup_user_apps_q6', as: :popup_user_apps_q6
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

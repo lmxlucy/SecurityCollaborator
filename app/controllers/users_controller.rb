@@ -141,19 +141,19 @@ class UsersController < ApplicationController
 
     current_user.user_apps.each do |user_app|
       if user_app.q1 == 'No'
-        if !@message.alerts.include? "Your " + App.find(user_app.app_id).name + " account is vulnerable to hacks. Please click here to learn how to set up a multi-factor authentication as soon as possible!"
-          @message.alerts << "Your " + App.find(user_app.app_id).name + " account is vulnerable to hacks. Please click here to learn how to set up a multi-factor authentication as soon as possible!"   
+        if !@message.alerts.include? "Your " + App.find(user_app.app_id).name + " account is vulnerable to hacks. Please check if you have installed a multi-factor authentication."
+          @message.alerts << "Your " + App.find(user_app.app_id).name + " account is vulnerable to hacks. Please check if you have installed a multi-factor authentication."   
         end
       elsif user_app.q1 == "I don't know"
-        if !@message.reminders.include? "Your " + App.find(user_app.app_id).name + " account maybe vulnerable to hacks. Please click here to learn how to set up a multi-factor authentication as soon as possible!"
-          @message.reminders << "Your " + App.find(user_app.app_id).name + " account maybe vulnerable to hacks. Please click here to learn how to set up a multi-factor authentication as soon as possible!"
+        if !@message.reminders.include? "Your " + App.find(user_app.app_id).name + " account maybe vulnerable to hacks. Please check if you have installed a multi-factor authentication."
+          @message.reminders << "Your " + App.find(user_app.app_id).name + " account maybe vulnerable to hacks. Please check if you have installed a multi-factor authentication."
         end
       end
       if user_app.q2 == 'No'
         if !@message.alerts.include? "Your " + App.find(user_app.app_id).name + " password is not strong enough against hacks. Please click here to learn how to set up strong password and update it as soon as possible!"
           @message.alerts << "Your " + App.find(user_app.app_id).name + " password is not strong enough against hacks. Please click here to learn how to set up strong password and update it as soon as possible!"  
         end
-      elsif user_app.q1 == "I don't know"
+      elsif user_app.q2 == "I don't know"
         if !@message.reminders.include? "Your " + App.find(user_app.app_id).name + " password may not be strong enough against hacks. Please click here to learn how to set up strong password and update it as soon as possible!"
           @message.reminders <<  "Your " + App.find(user_app.app_id).name + " password may not be strong enough against hacks. Please click here to learn how to set up strong password and update it as soon as possible!"
         end
@@ -162,7 +162,7 @@ class UsersController < ApplicationController
         if !@message.alerts.include? "Please ensure that the person/people you are sharing " + App.find(user_app.app_id).name + " account with are using this account and their devices securely."  
           @message.alerts << "Please ensure that the person/people you are sharing " + App.find(user_app.app_id).name + " account with are using this account and their devices securely."  
         end
-      elsif user_app.q1 == "I don't know"
+      elsif user_app.q3 == "I don't know"
         if !@message.reminders.include? "Please ensure that the person/people you are sharing " + App.find(user_app.app_id).name + " account with are using this account and their devices securely."
           @message.reminders <<  "Please ensure that the person/people you are sharing " + App.find(user_app.app_id).name + " account with are using this account and their devices securely."
         end
@@ -284,7 +284,7 @@ class UsersController < ApplicationController
     @message.update(alerts: @message.alerts)
   end
 
-  def popup_user_apps_q1
+  def popup_user_apps_q6
   end
 
   def popup_user_apps_q2

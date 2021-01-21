@@ -4,9 +4,15 @@
     <title>SecurityCollaborator</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <%= stylesheet_link_tag 'application.css' %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
+
+    <%= image_tag "lock.png", :size=>"90x100", :class=>'img-responsive'%>
   </head>
 
   <body>
