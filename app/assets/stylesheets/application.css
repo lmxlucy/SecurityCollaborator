@@ -13,3 +13,6 @@
  *= require_tree .
  *= require_self
  */
+ .btn-lg{
+     width: 500px;
+ }
