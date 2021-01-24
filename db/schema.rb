@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_17_073321) do
+ActiveRecord::Schema.define(version: 2021_01_11_204157) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "apps", force: :cascade do |t|
     t.string "name"
@@ -19,13 +22,13 @@ ActiveRecord::Schema.define(version: 2021_01_17_073321) do
   end
 
   create_table "devices", force: :cascade do |t|
-    t.text "q1"
+    t.text "q1", default: [], array: true
     t.string "q2"
     t.string "q3"
     t.string "q4"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.string "q5"
     t.string "q6"
     t.boolean "q1_improved"
@@ -39,30 +42,30 @@ ActiveRecord::Schema.define(version: 2021_01_17_073321) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
+    t.date "date"
+    t.text "alerts", default: [], array: true
+    t.text "reminders", default: [], array: true
+    t.text "device_reminders", default: [], array: true
+    t.text "device_alerts", default: [], array: true
+    t.string "perfect", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "alerts"
-    t.text "reminders"
-    t.text "device_reminders"
-    t.text "device_alerts"
-    t.date "date"
-    t.string "perfect", default: ""
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "user_apps", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "app_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "app_id", null: false
     t.string "q1"
     t.string "q2"
     t.string "q3"
     t.string "q4"
     t.string "q5"
-    t.text "q6"
+    t.text "q6", default: [], array: true
+    t.boolean "accessed_today"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "accessed_today"
     t.boolean "q1_improved"
     t.boolean "q2_improved"
     t.boolean "q3_improved"
@@ -76,7 +79,7 @@ ActiveRecord::Schema.define(version: 2021_01_17_073321) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.integer "partner_id"
+    t.bigint "partner_id"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

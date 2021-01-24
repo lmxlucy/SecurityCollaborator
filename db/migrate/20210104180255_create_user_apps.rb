@@ -8,7 +8,8 @@ class CreateUserApps < ActiveRecord::Migration[6.0]
       t.string :q3
       t.string :q4
       t.string :q5
-      t.string :q6
+      t.text :q6, array: true, default: []
+      t.boolean :accessed_today
 
       t.timestamps
     end
