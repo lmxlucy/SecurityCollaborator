@@ -99,7 +99,15 @@ class UsersController < ApplicationController
   end
 
   def update_uapps_2
-    if current_user.update(user_params)
+    no_access = TRUE
+    current_user.user_apps.each do |user_app|
+      if user_app.accessed_today
+        no_access = FALSE
+      end
+    end
+    if no_access
+      redirect_to edit_device_questions_path
+    elsif current_user.update(user_params)
       redirect_to edit_device_questions_path
     else
       redirect_to edit_user_apps_2_path
@@ -281,7 +289,9 @@ class UsersController < ApplicationController
     else
       @message.perfect = ""
     end
-    @message.update(alerts: @message.alerts, reminders: @message.reminders, device_alerts: @message.device_alerts, device_reminders: @message.device_reminders)
+    if @message.update(alerts: @message.alerts, reminders: @message.reminders, device_alerts: @message.device_alerts, device_reminders: @message.device_reminders)
+      EmailReminderMailer.notify_partner(current_user.partner).deliver
+    end
   end
 
   def popup_user_apps_q6
@@ -302,7 +312,7 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.permit(:id, :email, :partner_id, apps_attributes: [:id, :name], 
+      params.require(:user).permit(:id, :email, :partner_id, apps_attributes: [:id, :name], 
       user_apps_attributes: [:id, :accessed_today, :q1, :q2, :q3, :q4, :q5, {:q6=>[]}, 
       :q1_improved, :q2_improved, :q3_improved, :q4_improved, :q5_improved, 
       :q6_mine_improved, :q6_partner_improved, :q6_public_improved],
