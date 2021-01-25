@@ -47,5 +47,10 @@
     <%= @message.perfect %>
 <% end %>
 </br></br>
-<%= link_to "SEE MY PARTNER'S", messages_path, :class=>'btn btn-info' %>    
+<% if current_user.partner %>
+    <%= link_to "SEE MY PARTNER'S", messages_path, :class=>'btn btn-info' %>  
+<% else %>
+    <h5>Please add your partner first.</h5>
+    <%= link_to "ADD PARTNER", edit_user_path(current_user.id), :class=>'btn btn-info' %> 
+<% end %>  
 <%= link_to 'HOME', authenticated_root_path, :class=>'btn btn-info'  %>
