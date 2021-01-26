@@ -3,16 +3,20 @@
     <div class="card border-0">  
       <div class="card-content">
         <% need_button = FALSE %>
-        <% current_user.messages.each do |message| %>
-          <% if message.joint_reflection.nil? %>
-            <% need_button = TRUE %>
-          <% else %>
-            <%= message.date %></br>
-            <%= message.joint_reflection %></br></br>
+        <span class="card-title"><h4>Past Reflections</h4></span><br>
+        <div class="form-group">
+          <% current_user.messages.each do |message| %>
+            <% if message.joint_reflection.nil? or message.joint_reflection.empty?%>
+              <% need_button = TRUE %>
+            <% else %>
+              <strong><%= message.date %></strong></br>
+              <%= message.joint_reflection %></br></br>
+            <% end %>
           <% end %>
-        <% end %>
+        </div>   
       </div>  
       <% if need_button %>
+      </br></br>
       <div class="card-content">
         <span class="card-title"><h4>Please write your thoughts on the joint results</h4></span>
         <div class="card-body">
@@ -21,9 +25,9 @@
             <div class="row">
               <div class="form-group">
                 <%= f.fields_for :messages do |messages_form| %>
-                  <% if messages_form.object.joint_reflection.nil? %>
+                  <% if messages_form.object.joint_reflection.nil? or messages_form.object.joint_reflection.empty?%>
                     <%= messages_form.object.date %></br>
-                    <%= messages_form.text_area :joint_reflection, label: false, :required => 'required' %></br></br>
+                    <%= messages_form.text_area :joint_reflection, required: true, label: false, size: "40x20" %></br>
                   <% end %>
                 <% end %>
               </div>
