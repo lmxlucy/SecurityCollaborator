@@ -289,7 +289,9 @@ class UsersController < ApplicationController
     else
       @message.perfect = ""
     end
-    @message.update(alerts: @message.alerts, reminders: @message.reminders, device_alerts: @message.device_alerts, device_reminders: @message.device_reminders)
+    if @message.update(alerts: @message.alerts, reminders: @message.reminders, device_alerts: @message.device_alerts, device_reminders: @message.device_reminders)
+      EmailReminderMailer.notify_partner(current_user.partner).deliver
+    end
   end
 
   def popup_user_apps_q6
