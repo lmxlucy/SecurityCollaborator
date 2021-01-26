@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_11_204157) do
+ActiveRecord::Schema.define(version: 2021_01_26_031119) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(version: 2021_01_11_204157) do
     t.string "perfect", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "self_reflection"
+    t.text "joint_reflection"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 

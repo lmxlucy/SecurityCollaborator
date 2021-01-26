@@ -6,9 +6,9 @@
             (alert.include? 'Please click here to learn how to set up strong password and update it as soon as possible!') %>
             <% m = alert.split('here') %>
             <% if alert.include? 'Please click here to learn how to set up strong password and update it as soon as possible!' %>
-                - <%= m.first %> <%= link_to 'here' , popup_user_apps_q2_path, :onclick => "window.open(this.href,'popup_q2', 'height=100, width=600');return false;" %> <%= m.last %></br>
+                - <%= m.first %> <%= link_to 'here' , popup_user_apps_q2_path, :onclick => "window.open(this.href,'popup_q2', 'height=600, width=600');return false;" %> <%= m.last %></br>
             <% else %>
-                - <%= m.first %> <%= link_to 'here' , popup_user_apps_q6_path, :onclick => "window.open(this.href,'popup_q6', 'height=100, width=600');return false;" %> <%= m.last %></br>
+                - <%= m.first %> <%= link_to 'here' , popup_user_apps_q6_path, :onclick => "window.open(this.href,'popup_q6', 'height=600, width=600');return false;" %> <%= m.last %></br>
             <% end %> 
         <% else %>
             - <%= alert %></br>
@@ -22,9 +22,9 @@
             (reminder.include? 'Please click here to learn how to set up strong password and update it as soon as possible!') %>
             <% m = reminder.split('here') %>
             <% if reminder.include? 'Please click here to learn how to set up strong password and update it as soon as possible!' %>
-                - <%= m.first %> <%= link_to 'here' , popup_user_apps_q2_path, :onclick => "window.open(this.href,'popup_q2', 'height=100, width=600');return false;" %> <%= m.last %></br>
+                - <%= m.first %> <%= link_to 'here' , popup_user_apps_q2_path, :onclick => "window.open(this.href,'popup_q2', 'height=600, width=600');return false;" %> <%= m.last %></br>
             <% else %>
-                - <%= m.first %> <%= link_to 'here' , popup_user_apps_q6_path, :onclick => "window.open(this.href,'popup_q6', 'height=100, width=600');return false;" %> <%= m.last %></br>
+                - <%= m.first %> <%= link_to 'here' , popup_user_apps_q6_path, :onclick => "window.open(this.href,'popup_q6', 'height=600, width=600');return false;" %> <%= m.last %></br>
             <% end %> 
         <% else %>
             - <%= reminder %></br>
@@ -47,6 +47,7 @@
     <%= @message.perfect %>
 <% end %>
 </br></br>
+
 <% if current_user.partner %>
     <%= link_to "SEE MY PARTNER'S", messages_path, :class=>'btn btn-info' %>  
 <% else %>
