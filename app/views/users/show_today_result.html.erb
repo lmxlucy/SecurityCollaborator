@@ -44,14 +44,50 @@
     <% end %>
 <% end %>
 <% if !@message.perfect.empty? %>
-    <%= @message.perfect %>
+    </br><h5><%= @message.perfect %></h5>
+<% end %>
+<% if !@message.self_reflection.nil? and !@message.self_reflection.empty? %>
+    </br><h5> Self Reflection </h5>
+    <%= @message.self_reflection %>
 <% end %>
 </br></br>
 
-<% if current_user.partner %>
-    <%= link_to "SEE MY PARTNER'S", messages_path, :class=>'btn btn-info' %>  
+<% if @message.self_reflection.nil? or @message.self_reflection.empty? %>
+    <div class="row">
+    <div class="col s9">
+        <div class="card border-0">  
+        <div class="card-content">
+            <span class="card-title"><h4>Please write your thoughts on today's results</h4></span>
+            <div class="card-body">
+            <%= simple_form_for(current_user, :url => update_reflection_path, :method => :update) do |f| %>
+                <%= f.error_notification %>
+                <div class="row">
+                <div class="form-group">
+                    <%= f.fields_for :messages do |messages_form| %>
+                    <% if messages_form.object.date == @message.date %>
+                        <%= messages_form.text_area :self_reflection, required: true, label: false, rows: "4", cols: "50" %></br>
+                    <% end %>
+                    <% end %>
+                </div>
+                </div>
+            </div>  
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-actions col s9">
+            <%= f.button :submit, 'Submit', :class=>'btn btn-info' %>
+            </div>
+        </div>
+        <% end %>
+    </div>
+    </div>
 <% else %>
-    <h5>Please add your partner first.</h5>
-    <%= link_to "ADD PARTNER", edit_user_path(current_user.id), :class=>'btn btn-info' %> 
+    <% if current_user.partner %>
+        <%= link_to "SEE MY PARTNER'S", messages_path, :class=>'btn btn-info' %>  
+    <% else %>
+        <h5>Please add your partner first.</h5>
+        <%= link_to "ADD PARTNER", edit_user_path(current_user.id), :class=>'btn btn-info' %> 
+    <% end %>  
+    <%= link_to 'HOME', authenticated_root_path, :class=>'btn btn-info'  %>
 <% end %>  
-<%= link_to 'HOME', authenticated_root_path, :class=>'btn btn-info'  %>
+<%= @message.inspect %>

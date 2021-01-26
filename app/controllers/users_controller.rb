@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :edit_apps, 
-                          :update_uapps, :edit_user_apps_1, :edit_user_apps_2,
-                          :update_uapps_1, :update_uapps_2]
+                          :update_uapps, :edit_user_apps_1, :edit_user_apps_2, :edit_user_apps_3,
+                          :update_uapps_1, :update_uapps_2, :update_uapps_3, 
+                          :edit_popup_reflection, :update_popup_reflection,
+                          :show_today_result]
   before_action :authenticate_user!
   # GET /users
   # GET /users.json
@@ -291,6 +293,14 @@ class UsersController < ApplicationController
       @message.perfect = ""
     end
     @message.update(alerts: @message.alerts, reminders: @message.reminders, device_alerts: @message.device_alerts, device_reminders: @message.device_reminders)
+  end
+
+  def update_reflection
+    if current_user.update(user_params)
+      redirect_to show_today_result_path
+    else
+      redirect_to show_today_result_path, alert: 'submission failed'
+    end
   end
 
   def edit_popup_reflection

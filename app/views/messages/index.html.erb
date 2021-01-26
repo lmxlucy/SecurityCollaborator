@@ -1,11 +1,10 @@
 <h4>Security Evaluation History</h4>
 <br><br>
-<% @messages.each do |message| %>
+<% @messages.order(:date).each do |message| %>
   <% if message.user_id == current_user.id %>
-    <button type="button" class="btn btn-info btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      <%= message.date %>
-    </button></br></br></br>
-    <div class="dropdown-menu p-5" style="max-width: 90%;">
+  <div class="card border">   
+  <div class="card-body">   
+    <h5><strong><%= message.date %></strong></h5><br>
       <div class="row">
         <div class="col">
           <h5>You</h5>
@@ -53,8 +52,14 @@
           </p>
           <p>
             <% if !message.perfect.empty? %>
-                <%= message.perfect %>
+                </br><h5><%= message.perfect %></h5></br>
             <% end %>
+          </P>
+          <P>
+          <% if !message.self_reflection.nil? and !message.self_reflection.empty? %>
+              </br><strong> Self Reflection </strong></br>
+              <%= message.self_reflection %>
+          <% end %>
           </P>
         </div>
         <div class="col">
@@ -104,12 +109,19 @@
             </p>
             <p>
               <% if !pm.perfect.empty? %>
-                  <%= pm.perfect %>
+                  </br><h5><%= pm.perfect %></h5></br>
               <% end %>
             </P>
+            <P>
+              <% if !pm.self_reflection.nil? and !pm.self_reflection.empty? %>
+                  </br><strong> Self Reflection </strong></br>
+                  <%= pm.self_reflection %>
+              <% end %>
+            </P>
+          </div>
         </div>
       </div>
-    </div>
+    </div><br><br>
   <% end %>
 <% end %>
 <%= link_to "WRITE REFLECTIONS", edit_popup_reflection_path(current_user.id), :onclick => "window.open(this.href,'popup_reflection', 'height=600, width=600');return false;", :class=>'btn btn-info'  %>
