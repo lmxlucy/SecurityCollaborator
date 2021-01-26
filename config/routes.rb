@@ -31,8 +31,11 @@ Rails.application.routes.draw do
   post 'users/:id/edit_device_questions', to: 'users#update_device_questions', as: :update_device_questions
   
   get 'users/:id/show_today_result', to: 'users#show_today_result', as: :show_today_result
-  
+
   get 'popup_user_apps_q2', to: 'users#popup_user_apps_q2', as: :popup_user_apps_q2
   get 'popup_user_apps_q6', to: 'users#popup_user_apps_q6', as: :popup_user_apps_q6
+
+  get 'users/:id/edit_popup_reflection', to: 'users#edit_popup_reflection', as: :edit_popup_reflection
+  post 'users/:id/edit_popup_reflection', to: 'users#update_popup_reflection', as: :update_popup_reflection
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

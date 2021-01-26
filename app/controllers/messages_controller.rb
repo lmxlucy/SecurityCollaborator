@@ -61,7 +61,6 @@ class MessagesController < ApplicationController
     end
   end
   
-  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_message
@@ -71,6 +70,6 @@ class MessagesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def message_params
       params.require(:message).permit(:user_id, :date, {:alerts=>[]}, {:reminders=>[]}, 
-      {:device_alerts=>[]}, {:device_reminders=>[]}, :perfect)
+      {:device_alerts=>[]}, {:device_reminders=>[]}, :perfect, :self_reflection, :joint_reflection)
     end
 end

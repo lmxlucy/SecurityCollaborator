@@ -112,4 +112,5 @@
     </div>
   <% end %>
 <% end %>
+<%= link_to "WRITE REFLECTIONS", edit_popup_reflection_path(current_user.id), :onclick => "window.open(this.href,'popup_reflection', 'height=600, width=600');return false;", :class=>'btn btn-info'  %>
 <%= link_to 'HOME', authenticated_root_path, :class=>'btn btn-info'  %>

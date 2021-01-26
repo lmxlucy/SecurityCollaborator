@@ -294,6 +294,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit_popup_reflection
+  end
+
+  def update_popup_reflection
+    if current_user.update(user_params)
+      redirect_to edit_popup_reflection_path
+    else
+      redirect_to edit_popup_reflection_path, alert: 'submission failed'
+    end
+  end
+
   def popup_user_apps_q6
   end
 
@@ -317,7 +328,7 @@ class UsersController < ApplicationController
       :q1_improved, :q2_improved, :q3_improved, :q4_improved, :q5_improved, 
       :q6_mine_improved, :q6_partner_improved, :q6_public_improved],
       messages_attributes: [:id, :user_id, :date, {:alerts=>[]}, {:reminders=>[]}, 
-      {:device_alerts=>[]}, {:device_reminders=>[]}, :perfect], device_attributes: [:id, :user_id, {:q1=>[]}, 
+      {:device_alerts=>[]}, {:device_reminders=>[]}, :perfect, :self_reflection, :joint_reflection], device_attributes: [:id, :user_id, {:q1=>[]}, 
       :q2, :q3, :q4, :q5, :q6, :q1_improved, :q1_improved_2, :q2_improved, :q3_improved, 
       :q4_improved, :q5_improved, :q6_improved])
     end
