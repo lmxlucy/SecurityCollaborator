@@ -13,8 +13,12 @@
  *= require_tree .
  *= require_self
  */
- .btn-lg{
-     width: 500px;
+ .btn-hover
+ {
+    background: none;
+    padding: 0px;
+    border: none;
+
  }
  .btn-info
  {
@@ -43,3 +47,7 @@
     overflow: hidden;
     background-color: #f1f1f1;
   }
+  .image-link:hover {
+    background-color: #fff;
+  }
+  

@@ -151,137 +151,137 @@ class UsersController < ApplicationController
     d = Device.find_by(:user_id=>current_user.id)
 
     current_user.user_apps.each do |user_app|
-      if user_app.q1 == 'No'
+      if user_app.q1 == 'No' and !user_app.q1_improved
         if !@message.alerts.include? "Your " + App.find(user_app.app_id).name + " account is vulnerable to hacks. Please check if you have installed a multi-factor authentication."
           @message.alerts << "Your " + App.find(user_app.app_id).name + " account is vulnerable to hacks. Please check if you have installed a multi-factor authentication."   
         end
-      elsif user_app.q1 == "I don't know"
+      elsif user_app.q1 == "I don't know" and !user_app.q1_improved
         if !@message.reminders.include? "Your " + App.find(user_app.app_id).name + " account maybe vulnerable to hacks. Please check if you have installed a multi-factor authentication."
           @message.reminders << "Your " + App.find(user_app.app_id).name + " account maybe vulnerable to hacks. Please check if you have installed a multi-factor authentication."
         end
       end
-      if user_app.q2 == 'No'
+      if user_app.q2 == 'No' and !user_app.q2_improved
         if !@message.alerts.include? "Your " + App.find(user_app.app_id).name + " password is not strong enough against hacks. Please click here to learn how to set up strong password and update it as soon as possible!"
           @message.alerts << "Your " + App.find(user_app.app_id).name + " password is not strong enough against hacks. Please click here to learn how to set up strong password and update it as soon as possible!"  
         end
-      elsif user_app.q2 == "I don't know"
+      elsif user_app.q2 == "I don't know" and !user_app.q2_improved
         if !@message.reminders.include? "Your " + App.find(user_app.app_id).name + " password may not be strong enough against hacks. Please click here to learn how to set up strong password and update it as soon as possible!"
           @message.reminders <<  "Your " + App.find(user_app.app_id).name + " password may not be strong enough against hacks. Please click here to learn how to set up strong password and update it as soon as possible!"
         end
       end
-      if user_app.q3 == 'Yes'
+      if user_app.q3 == 'Yes' and !user_app.q3_improved
         if !@message.alerts.include? "Please ensure that the person/people you are sharing " + App.find(user_app.app_id).name + " account with are using this account and their devices securely."  
           @message.alerts << "Please ensure that the person/people you are sharing " + App.find(user_app.app_id).name + " account with are using this account and their devices securely."  
         end
-      elsif user_app.q3 == "I don't know"
+      elsif user_app.q3 == "I don't know" and !user_app.q3_improved
         if !@message.reminders.include? "Please ensure that the person/people you are sharing " + App.find(user_app.app_id).name + " account with are using this account and their devices securely."
           @message.reminders <<  "Please ensure that the person/people you are sharing " + App.find(user_app.app_id).name + " account with are using this account and their devices securely."
         end
       end
-      if user_app.q4 == 'Yes, sometimes'
+      if user_app.q4 == 'Yes, sometimes' and !user_app.q4_improved
         if !@message.reminders.include? "You are doing well, but you may want to update your " + App.find(user_app.app_id).name + " password a bit more often (eg. every 30/60 days)"
           @message.reminders << "You are doing well, but you may want to update your " + App.find(user_app.app_id).name + " password a bit more often (eg. every 30/60 days)"  
         end
-      elsif user_app.q4 == 'Yes, rarely'
+      elsif user_app.q4 == 'Yes, rarely'  and !user_app.q4_improved
         if !@message.reminders.include? "You have rooms to improve that you may need to update your " + App.find(user_app.app_id).name + " password a bit more often (eg. every 30/60 days)"
           @message.reminders << "You have rooms to improve that you may need to update your " + App.find(user_app.app_id).name + " password a bit more often (eg. every 30/60 days)"
         end  
-      elsif user_app.q4 == "No"
+      elsif user_app.q4 == "No"  and !user_app.q4_improved
         if !@message.alerts.include? "For your "  + App.find(user_app.app_id).name + " account's security, you may need to update the password every 30, 60, or 90 days"  
           @message.alerts << "For your "  + App.find(user_app.app_id).name + " account's security, you may need to update the password every 30, 60, or 90 days"  
         end
-      elsif user_app.q4 == "I don't know"
+      elsif user_app.q4 == "I don't know"  and !user_app.q4_improved
         if !@message.reminders.include? "For your "  + App.find(user_app.app_id).name + " account's security, you may need to update the password every 30, 60, or 90 days"
           @message.reminders << "For your "  + App.find(user_app.app_id).name + " account's security, you may need to update the password every 30, 60, or 90 days"  
         end
       end
-      if user_app.q5 == 'No'
+      if user_app.q5 == 'No' and !user_app.q5_improved
         if !@message.alerts.include? "Please update your " + App.find(user_app.app_id).name + " account to the latest version as soon as possible!"
           @message.alerts << "Please update your " + App.find(user_app.app_id).name + " account to the latest version as soon as possible!" 
         end 
-      elsif user_app.q5 == "I don't know"
+      elsif user_app.q5 == "I don't know" and !user_app.q5_improved
         if !@message.alerts.include? "Please ensure that you are using the latest version of your " + App.find(user_app.app_id).name + " account."
           @message.alerts << "Please ensure that you are using the latest version of your " + App.find(user_app.app_id).name + " account."  
         end
       end
-      if (user_app.q6.include? 'My mobile phone') || (user_app.q6.include? 'My tablet') || (user_app.q6.include? 'My laptop') || (user_app.q6.include? 'My desktop computer')
+      if ((user_app.q6.include? 'My mobile phone') || (user_app.q6.include? 'My tablet') || (user_app.q6.include? 'My laptop') || (user_app.q6.include? 'My desktop computer')) and !user_app.q6_mine_improved
         if !@message.reminders.include? "You should check and make sure your devices are secure for the use of your " + App.find(user_app.app_id).name + " account. Please click here for a security checklist." 
           @message.reminders << "You should check and make sure your devices are secure for the use of your " + App.find(user_app.app_id).name + " account. Please click here for a security checklist." 
         end
       end
-      if (user_app.q6.include? "My partner's mobile phone") || (user_app.q6.include? "My partner's tablet") || (user_app.q6.include? "My partner's laptop") || (user_app.q6.include? "My partner's desktop computer")
+      if ((user_app.q6.include? "My partner's mobile phone") || (user_app.q6.include? "My partner's tablet") || (user_app.q6.include? "My partner's laptop") || (user_app.q6.include? "My partner's desktop computer")) and !user_app.q6_partner_improved
         if !@message.reminders.include? "You should check and make sure your partner's devices are secure for the use of your " + App.find(user_app.app_id).name + " account. Please click here for a security checklist." 
           @message.reminders << "You should check and make sure your partner's devices are secure for the use of your " + App.find(user_app.app_id).name + " account. Please click here for a security checklist." 
         end
       end
-      if user_app.q6.include? "Devices from my workplace or public"
+      if user_app.q6.include? "Devices from my workplace or public" and !user_app.q6_public_improved
         if !@message.reminders.include? "You should log out " + App.find(user_app.app_id).name + " everytime you finish using and clear the cookies when neccessary."
           @message.reminders << "You should log out " + App.find(user_app.app_id).name + " everytime you finish using and clear the cookies when neccessary."
         end
       end
     end
 
-    if d.q1.include? "Memorize them in mind"
+    if d.q1.include? "Memorize them in mind" and !d.q1_improved
       if !@message.device_reminders.include? "Memorizing passwords is not safe! You may consider using a password management system (eg. https://1password.com, https://www.lastpass.com) to improve the security of your accounts when you have more."
         @message.device_reminders << "Memorizing passwords is not safe! You may consider using a password management system (eg. https://1password.com, https://www.lastpass.com) to improve the security of your accounts when you have more."
       end
     end
-    if d.q1.include? "Write them down"
+    if d.q1.include? "Write them down" and !d.q1_improved
       if !@message.device_reminders.include? "Writing down the password is not the optimal solution! You may consider using a password management system (eg. https://1password.com, https://www.lastpass.com) to improve the security of your accounts when you have more."
         @message.device_reminders << "Writing down the password is not the optimal solution! You may consider using a password management system (eg. https://1password.com, https://www.lastpass.com) to improve the security of your accounts when you have more."
       end
     end
-    if d.q1.include? "Save it in a file on the computer"
+    if d.q1.include? "Save it in a file on the computer" and !d.q1_improved
       if !@message.device_reminders.include? "Saving the password on local computer is not the optimal solution! You may consider using a password management system (eg. https://1password.com, https://www.lastpass.com) to improve the security of your accounts when you have more."
         @message.device_reminders << "Saving the password on local computer is not the optimal solution! You may consider using a password management system (eg. https://1password.com, https://www.lastpass.com) to improve the security of your accounts when you have more."
       end
     end
-    if d.q1.include? "Use the same password for multiple accounts"
+    if d.q1.include? "Use the same password for multiple accounts" and !d.q1_improved_2
       if !@message.device_alerts.include? "Using the same password for more than one account is not secure! You should generate different passwords for different accounts. You may also consider using a password management system (eg. https://1password.com, https://www.lastpass.com) to improve the security of your accounts when you have more."
         @message.device_alerts << "Using the same password for more than one account is not secure! You should generate different passwords for different accounts. You may also consider using a password management system (eg. https://1password.com, https://www.lastpass.com) to improve the security of your accounts when you have more."
       end
     end
-    if d.q2 == "No"
+    if d.q2 == "No" and !d.q2_improved
       if !@message.device_alerts.include? "Please set up a PIN, passcode or fingerprint for your devices as soon as possible."
         @message.device_alerts << "Please set up a PIN, passcode or fingerprint for your devices as soon as possible."
       end
-    elsif d.q2 == "I don't know"
+    elsif d.q2 == "I don't know" and !d.q2_improved
       if !@message.device_reminders.include? "You may need to check if you have PIN, passcode or fingerprint for all your devices and set up one if neccessary."
         @message.device_reminders << "You may need to check if you have PIN, passcode or fingerprint for all your devices and set up one if neccessary."
       end
     end
-    if d.q3 == "No"
+    if d.q3 == "No" and !d.q3_improved
       if !@message.device_alerts.include? "Please set up the auto-lock function in your device's settings as soon as possible."
         @message.device_alerts << "Please set up the auto-lock function in your device's settings as soon as possible."
       end
-    elsif d.q3 == "I don't know"
+    elsif d.q3 == "I don't know" and !d.q3_improved
       if !@message.device_reminders.include? "You may need to check if you have auto-lock for your devices and set up one if neccessary."
         @message.device_reminders << "You may need to check if you have auto-lock for your devices and set up one if neccessary."
       end
     end
-    if d.q4 == "No"
+    if d.q4 == "No" and !d.q4_improved
       if !@message.device_alerts.include? "You should update your devices' operating systems as soon as possible!"
         @message.device_alerts << "You should update your devices' operating systems as soon as possible!"
       end
-    elsif d.q4 == "I don't know"
+    elsif d.q4 == "I don't know" and !d.q4_improved
       if !@message.device_reminders.include? "You may want to check and ensure that your devices' operating system are up-to-date. You can check in the About of your devices."
         @message.device_reminders << "You may want to check and ensure that your devices' operating system are up-to-date. You can check in the About of your devices."
       end
     end
-    if d.q5 == "No"
+    if d.q5 == "No" and !d.q5_improved
       if !@message.device_alerts.include? "You should install anti-virus softwares on your devices as soon as possible."
         @message.device_alerts << "You should install anti-virus softwares on your devices as soon as possible."
       end
-    elsif d.q5 == "I don't know"
+    elsif d.q5 == "I don't know" and !d.q5_improved
       if !@message.device_reminders.include? "You may need to install anti-virus softwares for devices you haven't installed."
         @message.device_reminders << "You may need to install anti-virus softwares for devices you haven't installed."
       end
-    elsif d.q5 == "Yes, some of them"
+    elsif d.q5 == "Yes, some of them" and !d.q5_improved
       if !@message.device_reminders.include? "You may need to install anti-virus softwares for those devices you haven't installed."
         @message.device_reminders << "You may need to install anti-virus softwares for those devices you haven't installed."
       end
     end
-    if d.q6 == "No"
+    if d.q6 == "Yes" and !d.q6_improved
       if !@message.device_alerts.include? "You should check and make sure the people who use your devices are using them securely."
         @message.device_alerts << "You should check and make sure the people who use your devices are using them securely."
       end
