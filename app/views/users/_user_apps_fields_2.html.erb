@@ -1,7 +1,7 @@
 <div class="card-body">
     <h5>Do you use multi-factor authentication (eg. Duo Security) for the shared accounts below?</h5>
     <%= f.simple_fields_for :user_apps do |user_apps_form| %>
-        <% if user_apps_form.object.accessed_today %>
+        <% if user_apps_form.object.accessed_today and user_apps_form.object.q1 != 'Yes' and !user_apps_form.object.q1_improved %>
                 <%= user_apps_form.label :q1, user_apps_form.object.app.name.split.map(&:capitalize)*' ' %>
                 <%= user_apps_form.select :q1, ['Yes', 'No', "I don't know"] %>
         <% end %>
@@ -11,7 +11,7 @@
 <div class="card-body">
     <h5>Do your passwords for the accounts below contain special characters and a combination of letters, numbers, and symbols?</h5>
     <%= f.simple_fields_for :user_apps do |user_apps_form| %>
-        <% if user_apps_form.object.accessed_today %>
+        <% if user_apps_form.object.accessed_today and user_apps_form.object.q2 != 'Yes' and !user_apps_form.object.q2_improved %>
                 <%= user_apps_form.label :q2, user_apps_form.object.app.name.split.map(&:capitalize)*' ' %>
                 <%= user_apps_form.select :q2, ['Yes', 'No', "I don't know"] %>
         <% end %>
@@ -20,7 +20,7 @@
 <div class="card-body">
     <h5>Do you use the following accounts' passwords for other accounts?</h5>
     <%= f.simple_fields_for :user_apps do |user_apps_form| %>
-        <% if user_apps_form.object.accessed_today %>
+        <% if user_apps_form.object.accessed_today and user_apps_form.object.q3 != 'No' and !user_apps_form.object.q3_improved %>
                 <%= user_apps_form.label :q3, user_apps_form.object.app.name.split.map(&:capitalize)*' ' %>
                 <%= user_apps_form.select :q3, ['Yes', 'No', "I don't know"] %>
         <% end %>
@@ -30,7 +30,7 @@
 <div class="card-body">
     <h5>Do you update the passwords for the accounts below?</h5>
     <%= f.simple_fields_for :user_apps do |user_apps_form| %>
-        <% if user_apps_form.object.accessed_today %>
+        <% if user_apps_form.object.accessed_today and user_apps_form.object.q4 != 'Yes, often' and !user_apps_form.object.q4_improved %>
                 <%= user_apps_form.label :q4, user_apps_form.object.app.name.split.map(&:capitalize)*' ' %>
                 <%= user_apps_form.select :q4, ['Yes, often', 'Yes, sometimes', "Yes, rarely", "No", "I don't know"] %>
         <% end %>
@@ -40,7 +40,7 @@
 <div class="card-body">
     <h5>Are you using the latest version of the accounts below?</h5>
     <%= f.simple_fields_for :user_apps do |user_apps_form| %>
-        <% if user_apps_form.object.accessed_today %>
+        <% if user_apps_form.object.accessed_today and user_apps_form.object.q5 != 'Yes' and !user_apps_form.object.q5_improved %>
                 <%= user_apps_form.label :q5, user_apps_form.object.app.name.split.map(&:capitalize)*' ' %>
                 <%= user_apps_form.select :q5, ['Yes', 'No', "I don't know"] %>
         <% end %>
@@ -50,7 +50,7 @@
 <div class="card-body">
     <h5>What are the devices you use to log in to these accounts? (Pick all the places you have logged on this account)</h5>
     <%= f.simple_fields_for :user_apps do |user_apps_form| %>
-        <% if user_apps_form.object.accessed_today %>
+        <% if user_apps_form.object.accessed_today and (!user_apps_form.object.q6_mine_improved or !user_apps_form.object.q6_partner_improved or !user_apps_form.object.q6_public_improved) %>
             <%= user_apps_form.label :q6, user_apps_form.object.app.name.split.map(&:capitalize)*' ' %>
             <%= user_apps_form.select :q6, options_for_select(['My mobile phone', 'My tablet', 
             "My laptop", "My desktop computer", "My partner's mobile phone", 
