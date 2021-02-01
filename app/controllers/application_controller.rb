@@ -9,9 +9,11 @@ class ApplicationController < ActionController::Base
     yield
     ensure
     Time.zone = old_time_zone
+    
     end
                                                                                     
     def browser_timezone
     cookies["browser.timezone"]
     end
 end
+

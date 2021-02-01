@@ -138,7 +138,7 @@ class UsersController < ApplicationController
   def update_device_questions
     message = Message.find_or_create_by(user_id: current_user.id, date: Date.today)
     if current_user.update(user_params)
-      EmailReminderMailer.notify_partner(current_user.partner).deliver
+      #EmailReminderMailer.notify_partner(current_user.partner).deliver
       redirect_to show_today_result_path
     else
       redirect_to edit_device_questions_path
@@ -178,15 +178,15 @@ class UsersController < ApplicationController
             @message.reminders <<  "Please ensure that the person/people you are sharing " + App.find(user_app.app_id).name + " account with are using this account and their devices securely."
           end
         end
-        if user_app.q4 == 'Yes, sometimes' and !user_app.q4_improved
-          if !@message.reminders.include? "You are doing well, but you may want to update your " + App.find(user_app.app_id).name + " password a bit more often (eg. every 30/60 days)"
-            @message.reminders << "You are doing well, but you may want to update your " + App.find(user_app.app_id).name + " password a bit more often (eg. every 30/60 days)"  
+        if user_app.q4 == 'Sometimes' and !user_app.q4_improved
+          if !@message.reminders.include? "You are doing well, but you may want to update your " + App.find(user_app.app_id).name + " password a bit more often (eg. every 30, 60, or 90 days)"
+            @message.reminders << "You are doing well, but you may want to update your " + App.find(user_app.app_id).name + " password a bit more often (eg. every 30, 60, or 90 days)"  
           end
-        elsif user_app.q4 == 'Yes, rarely'  and !user_app.q4_improved
-          if !@message.reminders.include? "You have rooms to improve that you may need to update your " + App.find(user_app.app_id).name + " password a bit more often (eg. every 30/60 days)"
-            @message.reminders << "You have rooms to improve that you may need to update your " + App.find(user_app.app_id).name + " password a bit more often (eg. every 30/60 days)"
+        elsif user_app.q4 == 'Rarely'  and !user_app.q4_improved
+          if !@message.reminders.include? "You have room to improve! You may need to update your " + App.find(user_app.app_id).name + " password a bit more often (eg. every 30, 60, or 90 days)"
+            @message.reminders << "You have room to improve! You may need to update your " + App.find(user_app.app_id).name + " password a bit more often (eg. every 30, 60, or 90 days)"
           end  
-        elsif user_app.q4 == "No"  and !user_app.q4_improved
+        elsif user_app.q4 == "Never"  and !user_app.q4_improved
           if !@message.alerts.include? "For your "  + App.find(user_app.app_id).name + " account's security, you may need to update the password every 30, 60, or 90 days"  
             @message.alerts << "For your "  + App.find(user_app.app_id).name + " account's security, you may need to update the password every 30, 60, or 90 days"  
           end
@@ -203,6 +203,7 @@ class UsersController < ApplicationController
           if !@message.alerts.include? "Please ensure that you are using the latest version of your " + App.find(user_app.app_id).name + " account."
             @message.alerts << "Please ensure that you are using the latest version of your " + App.find(user_app.app_id).name + " account."  
           end
+
         end
         if ((user_app.q6.include? 'My mobile phone') || (user_app.q6.include? 'My tablet') || (user_app.q6.include? 'My laptop') || (user_app.q6.include? 'My desktop computer')) and !user_app.q6_mine_improved
           if !@message.reminders.include? "You should check and make sure your devices are secure for the use of your " + App.find(user_app.app_id).name + " account. Please click here for a security checklist." 
@@ -247,8 +248,8 @@ class UsersController < ApplicationController
         @message.device_alerts << "Please set up a PIN, passcode or fingerprint for your devices as soon as possible."
       end
     elsif d.q2 == "I don't know" and !d.q2_improved
-      if !@message.device_reminders.include? "You may need to check if you have PIN, passcode or fingerprint for all your devices and set up one if neccessary."
-        @message.device_reminders << "You may need to check if you have PIN, passcode or fingerprint for all your devices and set up one if neccessary."
+      if !@message.device_reminders.include? "You may need to check if you have a PIN, passcode or fingerprint for all your devices and set up one if neccessary."
+        @message.device_reminders << "You may need to check if you have a PIN, passcode or fingerprint for all your devices and set up one if neccessary."
       end
     end
     if d.q3 == "No" and !d.q3_improved
@@ -270,16 +271,16 @@ class UsersController < ApplicationController
       end
     end
     if d.q5 == "No" and !d.q5_improved
-      if !@message.device_alerts.include? "You should install anti-virus softwares on your devices as soon as possible."
-        @message.device_alerts << "You should install anti-virus softwares on your devices as soon as possible."
+      if !@message.device_alerts.include? "You should install anti-virus software on your devices as soon as possible."
+        @message.device_alerts << "You should install anti-virus software on your devices as soon as possible."
       end
     elsif d.q5 == "I don't know" and !d.q5_improved
-      if !@message.device_reminders.include? "You may need to install anti-virus softwares for devices you haven't installed."
-        @message.device_reminders << "You may need to install anti-virus softwares for devices you haven't installed."
+      if !@message.device_reminders.include? "You may need to install anti-virus software for devices you haven't installed."
+        @message.device_reminders << "You may need to install anti-virus software for devices you haven't installed."
       end
     elsif d.q5 == "Yes, some of them" and !d.q5_improved
-      if !@message.device_reminders.include? "You may need to install anti-virus softwares for those devices you haven't installed."
-        @message.device_reminders << "You may need to install anti-virus softwares for those devices you haven't installed."
+      if !@message.device_reminders.include? "You may need to install anti-virus software for those devices you haven't installed."
+        @message.device_reminders << "You may need to install anti-virus software for those devices you haven't installed."
       end
     end
     if d.q6 == "Yes" and !d.q6_improved
