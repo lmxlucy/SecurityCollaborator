@@ -315,12 +315,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def popup_user_apps_q6
-  end
-
-  def popup_user_apps_q2
-  end
-  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
