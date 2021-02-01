@@ -1,65 +1,65 @@
 <%= f.simple_fields_for :user_apps do |user_apps_form| %>
-    <% if ["No", "I don't know"].include? user_apps_form.object.q1 %>
+    <% if ["No", "I don't know"].include? user_apps_form.object.q1 and !user_apps_form.object.q1_improved %>
         <%= user_apps_form.label :q1_improved, "I have installed a multi-factor authentication for " + user_apps_form.object.app.name.split.map(&:capitalize)*' ' %>
         <%= user_apps_form.input :q1_improved, label: false %></br></br>
     <% end %>
-    <% if ["No", "I don't know"].include? user_apps_form.object.q2 %>
+    <% if ["No", "I don't know"].include? user_apps_form.object.q2 and !user_apps_form.object.q2_improved %>
         <%= user_apps_form.label :q2_improved, "I have created a strong password for my " + user_apps_form.object.app.name.split.map(&:capitalize)*' ' + " account, which contains special characters and a combinaiton of letters, numbers, and symbols" %>
         <%= user_apps_form.input :q2_improved, label: false %></br></br>
     <% end %>
-    <% if ["Yes", "I don't know"].include? user_apps_form.object.q3 %>
+    <% if ["Yes", "I don't know"].include? user_apps_form.object.q3 and !user_apps_form.object.q3_improved %>
         <%= user_apps_form.label :q3_improved, "I have changed my account passwords to make sure that my " + user_apps_form.object.app.name.split.map(&:capitalize)*' ' + " account's password is different from other accounts'" %>
         <%= user_apps_form.input :q3_improved, label: false %></br></br>
     <% end %>
-    <% if ["Yes, sometimes", "Yes, rarely", "No", "I don't know"].include? user_apps_form.object.q4 %>
+    <% if ["Sometimes", "Rarely", "Never", "I don't know"].include? user_apps_form.object.q4 and !user_apps_form.object.q4_improved %>
         <%= user_apps_form.label :q4_improved, "I have set up a reminder to update my password for my " + user_apps_form.object.app.name.split.map(&:capitalize)*' ' + " account every 30/60/90 days" %>
         <%= user_apps_form.input :q4_improved, label: false %></br></br>
     <% end %>
-    <% if ["No", "I don't know"].include? user_apps_form.object.q5 %>
+    <% if ["No", "I don't know"].include? user_apps_form.object.q5 and !user_apps_form.object.q5_improved %>
         <%= user_apps_form.label :q5_improved, "I have updated my " + user_apps_form.object.app.name.split.map(&:capitalize)*' ' + " account to the latest version" %>
         <%= user_apps_form.input :q5_improved, label: false %></br></br>
     <% end %>
-    <% if (["My mobile phone", "My tablet", "My laptop", "My desktop computer"] & user_apps_form.object.q6).any? %>
-        <%= user_apps_form.label :q6_mine_improved, "I have checked and make sure that my devices are secure for the use of my " + user_apps_form.object.app.name.split.map(&:capitalize)*' ' + " account" %>
+    <% if (["My mobile phone", "My tablet", "My laptop", "My desktop computer"] & user_apps_form.object.q6).any? and !user_apps_form.object.q6_mine_improved %>
+        <%= user_apps_form.label :q6_mine_improved, "I have checked and made sure that my devices are secure for the use of my " + user_apps_form.object.app.name.split.map(&:capitalize)*' ' + " account" %>
         <%= user_apps_form.input :q6_mine_improved, label: false %></br></br>
     <% end %>
-    <% if (["My partner's mobile phone", "My partner's tablet", "My partner's laptop", "My partner's desktop computer"] & user_apps_form.object.q6).any?  %>
-        <%= user_apps_form.label :q6_partner_improved, "I have checked and make sure that my partner's devices are secure for the use of my " + user_apps_form.object.app.name.split.map(&:capitalize)*' ' + " account" %>
+    <% if (["My partner's mobile phone", "My partner's tablet", "My partner's laptop", "My partner's desktop computer"] & user_apps_form.object.q6).any? and !user_apps_form.object.q6_partner_improved %>
+        <%= user_apps_form.label :q6_partner_improved, "I have checked and made sure that my partner's devices are secure for the use of my " + user_apps_form.object.app.name.split.map(&:capitalize)*' ' + " account" %>
         <%= user_apps_form.input :q6_partner_improved, label: false %></br></br>
     <% end %>
-    <% if user_apps_form.object.q6.include? "Devices from my workplace or public" %>
-        <%= user_apps_form.label :q6_public_improved, "I have checked and make sure that I am using my " + user_apps_form.object.app.name.split.map(&:capitalize)*' ' + " account securely in other devices" %>
+    <% if user_apps_form.object.q6.include? "Devices from my workplace or public" and !user_apps_form.object.q6_public_improved %>
+        <%= user_apps_form.label :q6_public_improved, "I have checked and made sure that I am using my " + user_apps_form.object.app.name.split.map(&:capitalize)*' ' + " account securely in other devices" %>
         <%= user_apps_form.input :q6_public_improved, label: false %></br></br>
     <% end %>
 <% end %>
 
 <%= f.simple_fields_for :device do |device| %>
-    <% if (["Memorize them in mind", "Write them down", "Save it in a file on the computer"] & device.object.q1).any?  %>
+    <% if (["Memorize them in mind", "Write them down", "Save it in a file on the computer"] & device.object.q1).any? and !device.object.q1_improved %>
         <%= device.label :q1_improved, "I started to use a password management system to manage my account passwords" %>
         <%= device.input :q1_improved, label: false %></br></br>
     <% end %>
-    <% if device.object.q1.include? "Use the same password for multiple accounts"  %>
+    <% if device.object.q1.include? "Use the same password for multiple accounts" and !device.object.q1_improved_2 %>
         <%= device.label :q1_improved_2, "I have created different passwords for my shared accounts" %>
         <%= device.input :q1_improved_2, label: false %></br></br>
     <% end %>
-    <% if ["No", "I don't know"].include? device.object.q2 %>
+    <% if ["No", "I don't know"].include? device.object.q2 and !device.object.q2_improved %>
         <%= device.label :q2_improved, "I have set up a PIN, passcode or fingerprint to log in to my devices" %>
         <%= device.input :q2_improved, label: false %></br></br>
     <% end %>
-    <% if ["No", "I don't know"].include? device.object.q3 %>
+    <% if ["No", "I don't know"].include? device.object.q3 and !device.object.q3_improved%>
         <%= device.label :q3_improved, "I have set up auto-lock for my devices" %>
         <%= device.input :q3_improved, label: false %></br></br>
     <% end %>
-    <% if ["No", "I don't know"].include? device.object.q4 %>
+    <% if ["No", "I don't know"].include? device.object.q4 and !device.object.q4_improved %>
         <%= device.label :q4_improved, "I have updated my devices' operating systems to the latest versions" %>
         <%= device.input :q4_improved, label: false %></br></br>
     <% end %>
-    <% if ["Yes, some of them" ,"No", "I don't know"].include? device.object.q5 %>
-        <%= device.label :q5_improved, "I have installed anti-virus softwares to all of my devices" %>
+    <% if ["Yes, some of them" ,"No", "I don't know"].include? device.object.q5 and !device.object.q5_improved %>
+        <%= device.label :q5_improved, "I have installed anti-virus software to all of my devices" %>
         <%= device.input :q5_improved, label: false %></br></br>
     <% end %>
-    <% if device.object.q6=="No" %>
-        <%= device.label :q6_improved, "I have make sure that people who use my devices are using them securely" %>
+    <% if device.object.q6=="Yes" and !device.object.q6_improved %>
+        <%= device.label :q6_improved, "I have made sure that people who use my devices are using them securely" %>
         <%= device.input :q6_improved, label: false %></br></br>
     <% end %>
 <% end %>

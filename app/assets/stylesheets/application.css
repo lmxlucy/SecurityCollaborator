@@ -13,16 +13,23 @@
  *= require_tree .
  *= require_self
  */
- .btn-lg{
-     width: 500px;
+ .btn-hover
+ {
+    background: none;
+    padding: 0px;
+    border: none;
+
  }
  .btn-info
  {
     color: white !important;
  } 
+ .btn-info:hover {
+   color: white !important;
+ }
  .collapsible {
     background-color: #eee;
-    color: #444;
+    color: #444 !important;
     cursor: pointer;
     padding: 18px;
     width: 100%;
@@ -32,9 +39,9 @@
     font-size: 15px;
   }
   /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.active, .collapsible:hover {
-    background-color: #ccc;
-  }
+/*.active, .collapsible:hover {
+    background-color: #ccc; 
+  }*/
   
   /* Style the collapsible content. Note: hidden by default */
   .content {
@@ -42,10 +49,22 @@
     display: none;
     overflow: hidden;
     background-color: #f1f1f1;
+    margin-bottom: 10px;
+    margin-top: -5px;
+  }
+  .content-rounded {
+    border-radius: 25px;
+    box-shadow: 10px 10px 5px grey;
   }
   .text-danger1 {
     color: #FFB0B0;
   }
   .text-warning1{
     color: #FFB951;
+  }
+  .image-link:hover {
+    background-color: #fff;
+  }
+  .btn-collapse:hover {
+    background-color: #17a2b8;
   }
