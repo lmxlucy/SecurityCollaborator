@@ -9,35 +9,35 @@
         <% congrats = FALSE %>
         </div>
     <% end %>
-    <% if !@device.q2=="Yes" and !@device.q2_improved %>
+    <% if @device.q2!="Yes" and !@device.q2_improved %>
         <div class="card-body">
         <%= d.label :q2, "Are you using a PIN, passcode or fingerprint to log in to your devices?" %>
         <%= d.select :q2, ['Yes', 'No', "I don't know"] %> 
         <% congrats = FALSE %>
         </div>
     <% end %>
-    <% if !@device.q3=="Yes" and !@device.q3_improved %>
+    <% if @device.q3!="Yes" and !@device.q3_improved %>
         <div class="card-body">
         <%= d.label :q3, "Do your devices auto-lock after a certain time of no use?" %>
         <%= d.select :q3, ['Yes', 'No', "I don't know"] %> 
         <% congrats = FALSE %>
         </div>
     <% end %>
-    <% if !@device.q4=="Yes" and !@device.q4_improved %>
+    <% if @device.q4!="Yes" and !@device.q4_improved %>
         <div class="card-body">
         <%= d.label :q4, "Are you using the latest operating software in your devices?" %>
         <%= d.select :q4, ['Yes', 'No', "I don't know"] %>
         <% congrats = FALSE %> 
         </div>
     <% end %>    
-    <% if !@device.q5=="Yes, all of them" and !@device.q5_improved %>
+    <% if @device.q5!="Yes, all of them" and !@device.q5_improved %>
         <div class="card-body">
         <%= d.label :q5, "Do you have anti-virus software installed on your devices?" %>
         <%= d.select :q5, ['Yes, all of them', 'Yes, some of them', 'No', "I don't know"] %> 
         <% congrats = FALSE %> 
         </div>
     <% end %>
-    <% if !@device.q6=="No" and !@device.q6_improved %>
+    <% if @device.q6!="No" and !@device.q6_improved %>
         <div class="card-body">
         <%= d.label :q6, "Are you sharing any of your devices with other people? (*sharing as having access to or have used it)" %>
         <%= d.select :q6, ['Yes', 'No'] %> 
