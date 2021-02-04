@@ -8,18 +8,27 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    if current_user && current_user.admin
+      @users = User.all
+    else
+      redirect_to authenticated_root_path, :alert => "Access denied"
+    end
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
+    @user=current_user
   end
 
   # GET /users/new
   def new
-    @user = User.new
-    @partners = User.alphabetical.map{|x| [x.email, x.id] }
+    if current_user && current_user.admin
+      @user = User.new
+      @partners = User.alphabetical.map{|x| [x.email, x.id] }
+    else
+      redirect_to authenticated_root_path, :alert => "Access denied"
+    end
   end
 
   # GET /users/1/edit

@@ -10,11 +10,12 @@ class MessagesController < ApplicationController
   # GET /messages/1
   # GET /messages/1.json
   def show
+    redirect_to authenticated_root_path, :alert => "Access denied"
   end
 
   # GET /messages/new
   def new
-    @message = Message.new
+    redirect_to authenticated_root_path, :alert => "Access denied"
   end
 
   # GET /messages/1/edit
@@ -61,6 +62,14 @@ class MessagesController < ApplicationController
     end
   end
   
+  def all_messages
+    if current_user && current_user.admin
+      @messages = Message.all
+    else
+      redirect_to authenticated_root_path, :alert => "Access denied"
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_message
