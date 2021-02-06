@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Messages</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Date</th>
+      <th>Alerts</th>
+      <th>Reminders</th>
+      <th>Device Alerts</th>
+      <th>Device Reminders</th>
+      <th>Self Reflection</th>
+      <th>Joint Reflection</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @messages.order(:user_id).each do |m| %>
+      <tr>
+        <td><%= m.user.email %></td>
+        <td><%= m.date %></td>
+        <td><%= m.alerts %></td>
+        <td><%= m.reminders %></td>
+        <td><%= m.device_alerts %></td>
+        <td><%= m.device_reminders %></td>
+        <td><%= m.self_reflection %></td>
+        <td><%= m.joint_reflection %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

@@ -35,5 +35,7 @@ Rails.application.routes.draw do
 
   get 'users/:id/edit_popup_reflection', to: 'users#edit_popup_reflection', as: :edit_popup_reflection
   post 'users/:id/edit_popup_reflection', to: 'users#update_popup_reflection', as: :update_popup_reflection
+
+  get 'all_messages', to: 'messages#all_messages', as: :all_messages
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

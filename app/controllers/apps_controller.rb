@@ -4,21 +4,27 @@ class AppsController < ApplicationController
   # GET /apps
   # GET /apps.json
   def index
-    @apps = App.all
+    if current_user && current_user.admin
+      @apps = App.all
+    else
+      redirect_to authenticated_root_path, :alert => "Access denied"
+    end
   end
 
   # GET /apps/1
   # GET /apps/1.json
   def show
+    redirect_to authenticated_root_path, :alert => "Access denied"
   end
 
   # GET /apps/new
   def new
-    @app = App.new
+    redirect_to authenticated_root_path, :alert => "Access denied"
   end
 
   # GET /apps/1/edit
   def edit
+    redirect_to authenticated_root_path, :alert => "Access denied"
   end
 
   # POST /apps

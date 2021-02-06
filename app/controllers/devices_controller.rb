@@ -4,21 +4,27 @@ class DevicesController < ApplicationController
   # GET /devices
   # GET /devices.json
   def index
-    @devices = Device.all
+    if current_user && current_user.admin
+      @devices = Device.all
+    else
+      redirect_to authenticated_root_path, :alert => "Access denied"
+    end
   end
 
   # GET /devices/1
   # GET /devices/1.json
   def show
+    redirect_to authenticated_root_path, :alert => "Access denied"
   end
 
   # GET /devices/new
   def new
-    @device = Device.new
+    redirect_to authenticated_root_path, :alert => "Access denied"
   end
 
   # GET /devices/1/edit
   def edit
+    redirect_to authenticated_root_path, :alert => "Access denied"
   end
 
   # POST /devices

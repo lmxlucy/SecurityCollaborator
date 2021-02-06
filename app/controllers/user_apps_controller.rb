@@ -4,7 +4,11 @@ class UserAppsController < ApplicationController
   # GET /user_apps
   # GET /user_apps.json
   def index
-    @user_apps = UserApp.all
+    if current_user && current_user.admin
+      @user_apps = UserApp.all
+    else
+      redirect_to authenticated_root_path, :alert => "Access denied"
+    end
   end
 
   # GET /user_apps/1

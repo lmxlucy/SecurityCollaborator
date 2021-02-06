@@ -15,7 +15,14 @@
       <th>Q4</th>
       <th>Q5</th>
       <th>Q6</th>
-      <th colspan="3"></th>
+      <th>Q1 Improved</th>
+      <th>Q2 Improved</th>
+      <th>Q3 Improved</th>
+      <th>Q4 Improved</th>
+      <th>Q5 Improved</th>
+      <th>Q6 Mine Improved</th>
+      <th>Q6 Partner Improved</th>
+      <th>Q6 Public Improved</th>
     </tr>
   </thead>
 
@@ -32,13 +39,16 @@
         <td><%= user_app.q4 %></td>
         <td><%= user_app.q5 %></td>
         <td><%= user_app.q6 %></td>
-        <td><%= link_to 'Show', user_app %></td>
-        <td><%= link_to 'Edit', edit_user_app_path(user_app) %></td>
-        <td><%= link_to 'Destroy', user_app, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= user_app.q1_improved %></td>
+        <td><%= user_app.q2_improved %></td>
+        <td><%= user_app.q3_improved %></td>
+        <td><%= user_app.q4_improved %></td>
+        <td><%= user_app.q5_improved %></td>
+        <td><%= user_app.q6_mine_improved %></td>
+        <td><%= user_app.q6_partner_improved %></td>
+        <td><%= user_app.q6_public_improved %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 <br>
-
-<%= link_to 'New User App', new_user_app_path %>
