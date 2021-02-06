@@ -67,3 +67,6 @@
   .btn-collapse:hover {
     background-color: #17a2b8;
   }
+  .card-links:visited {
+    color: #17a2b8 !important;
+  }

@@ -2,8 +2,9 @@
 <% if !@message.alerts.empty? %>
     <div class="card border-0">
         <div class="card-title">
-            <%=image_tag "alert.png", :size=> "70x60", :class=> "rounded float-left responsive", :alt=> "reminder"%>
-            </br><h5 class="text-danger1"> Alerts </h5>
+            </br>
+            <%=image_tag "alert.png", :size=> "35x35", :class=> "rounded float-left responsive", :alt=> "reminder"%>
+            <h5 class="text-danger1"> Alerts </h5>
         </div>
         <div class="card-body">
             <h6> <strong> Application Alerts </strong> </h6>
@@ -48,8 +49,8 @@
 <% if !@message.reminders.empty? %>
     <div class="card border-0">
         <div class="card-title">
-            <%=image_tag "reminder.png", :size=> "70x60", :class=> "rounded float-left responsive", :alt=> "reminder"%>
-            </br><h5 class="text-warning1"> Reminders </h5>
+            <%=image_tag "reminder.png", :size=> "35x35", :class=> "rounded float-left responsive", :alt=> "reminder"%>
+            <h5 class="text-warning1"> Reminders </h5>
         </div>
         <div class="card-body">
             <h6> <strong> Application Reminders </strong> </h6>
@@ -80,8 +81,9 @@
             </br><h6> <strong> Device Reminders </strong> </h6>
                 <% if !@message.device_reminders.empty? %>
                 <div class="card border-0">
-                    <div class="card-body">
+                    <div class=" card-body ">
                         <% @message.device_reminders.each do |d_reminder| %>
+
                             &#8226 <%= auto_link(d_reminder, :html => { :target => '_blank'}) %></br>
                         <% end %>
                     </div>
@@ -105,7 +107,8 @@
         <div class="col s9">
             <div class="card border-0">  
                 <div class="card-content">
-                    <span class="card-title"><h4>Please write your thoughts on today's results</h4></span>
+                <%=image_tag "self_reflection.png", :size=> "35x35", :class=> "rounded float-left responsive", :alt=> "reminder"%>
+                    <span class="card-title"><h6><strong>Please write your thoughts on today's results</strong></h6></span>
                     <div class="card-body">
                         <%= simple_form_for(current_user, :url => update_reflection_path, :method => :update) do |f| %>
                             <%= f.error_notification %>
