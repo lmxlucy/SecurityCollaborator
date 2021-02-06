@@ -68,59 +68,63 @@
           <div class="col">
             <h5>Your Partner</h5>
             <% pm = Message.find_by(user_id: current_user.partner.id, date: message.date) %> 
-            <p>
-              <% if !pm.alerts.empty? %>
-                </br> <strong> Alerts </strong> </br>
-                <% pm.alerts.each do |alert| %>
-                  <% if (alert.include? 'Please click') %>
-                    <% m = alert.split('Please') %>
-                    &#8226  <%= m.first %></br>
-                  <% else %>
-                  &#8226  <%= alert %></br>
+            <% if !pm.nil? %>
+              <p>
+                <% if !pm.alerts.empty? %>
+                  </br> <strong> Alerts </strong> </br>
+                  <% pm.alerts.each do |alert| %>
+                    <% if (alert.include? 'Please click') %>
+                      <% m = alert.split('Please') %>
+                      &#8226  <%= m.first %></br>
+                    <% else %>
+                    &#8226  <%= alert %></br>
+                    <% end %>
                   <% end %>
                 <% end %>
-              <% end %>
-            </p>
-            <p>
-              <% if !pm.reminders.empty? %>
-                </br> <strong> Reminders </strong> </br>
-                <% pm.reminders.each do |reminder| %>
-                  <% if (reminder.include? 'Please click') %>
-                    <% m = reminder.split('Please') %>
-                    &#8226  <%= m.first %></br>
-                  <% else %>
-                  &#8226  <%= reminder %></br>
+              </p>
+              <p>
+                <% if !pm.reminders.empty? %>
+                  </br> <strong> Reminders </strong> </br>
+                  <% pm.reminders.each do |reminder| %>
+                    <% if (reminder.include? 'Please click') %>
+                      <% m = reminder.split('Please') %>
+                      &#8226  <%= m.first %></br>
+                    <% else %>
+                    &#8226  <%= reminder %></br>
+                    <% end %>
                   <% end %>
                 <% end %>
-              <% end %>
-            </p>
-            <p>
-              <% if !pm.device_alerts.empty? %>
-                </br> <strong> Device Alerts </strong> </br>
-                  <% pm.device_alerts.each do |d_alert| %>
-                    &#8226  <%= d_alert %></br>
-                  <% end %>
-              <% end %>
-            </p>
-            <p>
-              <% if !pm.device_reminders.empty? %>
-                  </br><strong> Device Reminders </strong></br>
-                  <% pm.device_reminders.each do |d_reminder| %>
-                    &#8226  <%= auto_link(d_reminder,:class => "autolinked", :html => { :target => '_blank'}) %></br></br>
-                  <% end %>
-              <% end %>
-            </p>
-            <p>
-              <% if !pm.perfect.empty? %>
-                  </br><h5><%= pm.perfect %></h5></br>
-              <% end %>
-            </P>
-            <P>
-              <% if !pm.self_reflection.nil? and !pm.self_reflection.empty? %>
-                  </br><strong> Self Reflection </strong></br>
-                  <%= pm.self_reflection %>
-              <% end %>
-            </P>
+              </p>
+              <p>
+                <% if !pm.device_alerts.empty? %>
+                  </br> <strong> Device Alerts </strong> </br>
+                    <% pm.device_alerts.each do |d_alert| %>
+                      &#8226  <%= d_alert %></br>
+                    <% end %>
+                <% end %>
+              </p>
+              <p>
+                <% if !pm.device_reminders.empty? %>
+                    </br><strong> Device Reminders </strong></br>
+                    <% pm.device_reminders.each do |d_reminder| %>
+                      &#8226  <%= auto_link(d_reminder,:class => "autolinked", :html => { :target => '_blank'}) %></br></br>
+                    <% end %>
+                <% end %>
+              </p>
+              <p>
+                <% if !pm.perfect.empty? %>
+                    </br><h5><%= pm.perfect %></h5></br>
+                <% end %>
+              </P>
+              <P>
+                <% if !pm.self_reflection.nil? and !pm.self_reflection.empty? %>
+                    </br><strong> Self Reflection </strong></br>
+                    <%= pm.self_reflection %>
+                <% end %>
+              </P>
+            <% else %>
+              <p> </br> Your partner has not filled out today's evaluation yet </br></p>
+            <% end %>
           </div>
         </div>   
       </div>

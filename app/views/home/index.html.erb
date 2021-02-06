@@ -3,15 +3,18 @@
 <% if current_user.partner %>
     <h5>Partner: <%= current_user.partner.email %></h5>
     </br></br>
-    <%= link_to "START TODAY'S EVALUATION", edit_user_apps_3_path(current_user), :class=>'btn btn-info' %> 
+    <% if current_user.messages.count < 7 %>
+        <%= link_to "START TODAY'S EVALUATION", edit_user_apps_3_path(current_user), :class=>'btn btn-info' %> 
+        <%= link_to "ADD MORE ACCOUNTS", edit_apps_path(current_user.id), :class=>'btn btn-info' %>
+    <% end %>
     <%= link_to "VIEW HISTORY", messages_path, :class=>'btn btn-info' %> 
-    <%= link_to "ADD MORE ACCOUNTS", edit_apps_path(current_user.id), :class=>'btn btn-info' %>
-    <% if current_user.messages.count >= 1 %>
+    <% if current_user.messages.count >= 7 %>
         <%= link_to "SEE DETAILED REPORT", user_path(current_user.id), :class=>'btn btn-info' %> 
     <% end %>
 <% else %>
     <h5>Please add your partner first.</h5>
     <%= link_to "ADD PARTNER", edit_user_path(current_user.id), :class=>'btn btn-info' %> 
 <% end %>
-<%= link_to "SIGN OUT", destroy_user_session_path, method: :delete, :class=>'btn btn-info' %> 
+<br><br>
+<%= link_to "SIGN OUT", destroy_user_session_path, method: :delete, :class=>'btn btn-info', style: "background-color: grey;" %> 
     
