@@ -97,7 +97,8 @@
     </br><h5><%= @message.perfect %></h5>
 <% end %>
 <% if !@message.self_reflection.nil? and !@message.self_reflection.empty? %>
-    </br><h5> Self Reflection </h5>
+    <%=image_tag "self_reflection.png", :size=> "35x35", :class=> "rounded float-left responsive", :alt=> "reminder"%>
+    </br><h6><strong> Self Reflection </strong></h6>
     <%= @message.self_reflection %>
 <% end %>
 </br></br>
