@@ -28,11 +28,11 @@
 </div>
 
 <div class="card-body">
-    <h5>Do you update the passwords for the accounts below?</h5>
+    <h5>How often do you update the passwords for the accounts below?</h5>
     <%= f.simple_fields_for :user_apps do |user_apps_form| %>
-        <% if user_apps_form.object.accessed_today and user_apps_form.object.q4 != 'Yes, often' and !user_apps_form.object.q4_improved %>
+        <% if user_apps_form.object.accessed_today and user_apps_form.object.q4 != 'Often' and !user_apps_form.object.q4_improved %>
                 <%= user_apps_form.label :q4, user_apps_form.object.app.name.split.map(&:capitalize)*' ' %>
-                <%= user_apps_form.select :q4, ['Yes, often', 'Yes, sometimes', "Yes, rarely", "No", "I don't know"] %>
+                <%= user_apps_form.select :q4, ['Often', 'Sometimes', "Rarely", "Never", "I don't know"] %>
         <% end %>
     <% end %>
 </div>

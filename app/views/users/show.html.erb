@@ -1,10 +1,11 @@
 <div class='row'>
   <div class='col'>
     <h4>You</h4>
-    <table>
+    <table class="table-hover">
+    <tbody>
     <% @user.user_apps.each do |user_app|%>
-
-        <td><strong><%= App.find(user_app.app_id).name.capitalize %></strong></td>
+      
+        <th><strong><%= App.find(user_app.app_id).name.capitalize %></strong></th>
         <% if !user_app.q1_improved.nil? %>
         <tr>
           <td>I have installed a multi-factor authentication for this account.</td>
@@ -109,14 +110,16 @@
               user_app.q3_improved.nil? && user_app.q4_improved.nil? &&
               user_app.q5_improved.nil? && user_app.q6_mine_improved.nil? &&
               user_app.q6_partner_improved.nil? && user_app.q6_public_improved.nil? %>
-            <tr><td>Good job! No improvement is needed for this account</td></tr>
+            <tr><td>Good job! No improvement is needed for this account</td>
+            <td></td>
+            </tr>
         <% end %>
     <% end %>
       <td><strong>Devices</strong></td>
       <% device = @user.device %>
         <% if !device.q1_improved.nil? %>
           <tr>
-            <td>I started to use a password management system to manage my account passwords.<td>
+            <td>I started to use a password management system to manage my account passwords.</td>
             <td>
               <% if device.q1_improved %>
                 <%= image_tag "check.png", :size=>"20x20", :class=>'img-responsive'%>  
@@ -128,7 +131,7 @@
         <% end %>
         <% if !device.q1_improved_2.nil? %>
           <tr>
-            <td>I started to use a password management system to manage my account passwords.<td>
+            <td>I started to use a password management system to manage my account passwords.</td>
             <td>
               <% if device.q1_improved_2 %>
                 <%= image_tag "check.png", :size=>"20x20", :class=>'img-responsive'%>  
@@ -140,7 +143,7 @@
         <% end %>
         <% if !device.q2_improved.nil? %>
           <tr>
-            <td>I started to use a password management system to manage my account passwords.<td>
+            <td>I started to use a password management system to manage my account passwords.</td>
             <td>
               <% if device.q2_improved %>
                 <%= image_tag "check.png", :size=>"20x20", :class=>'img-responsive'%>  
@@ -152,7 +155,7 @@
         <% end %>
         <% if !device.q3_improved.nil? %>
           <tr>
-            <td>I started to use a password management system to manage my account passwords.<td>
+            <td>I started to use a password management system to manage my account passwords.</td>
             <td>
               <% if device.q3_improved %>
                 <%= image_tag "check.png", :size=>"20x20", :class=>'img-responsive'%>  
@@ -164,7 +167,7 @@
         <% end %>
         <% if !device.q4_improved.nil? %>
           <tr>
-            <td>I started to use a password management system to manage my account passwords.<td>
+            <td>I started to use a password management system to manage my account passwords.</td>
             <td>
               <% if device.q4_improved %>
                 <%= image_tag "check.png", :size=>"20x20", :class=>'img-responsive'%>  
@@ -176,7 +179,7 @@
         <% end %>
         <% if !device.q5_improved.nil? %>
           <tr>
-            <td>I started to use a password management system to manage my account passwords.<td>
+            <td>I started to use a password management system to manage my account passwords.</td>
             <td>
               <% if device.q5_improved %>
                 <%= image_tag "check.png", :size=>"20x20", :class=>'img-responsive'%>  
@@ -188,7 +191,7 @@
         <% end %>
         <% if !device.q6_improved.nil? %>
           <tr>
-            <td>I started to use a password management system to manage my account passwords.<td>
+            <td>I started to use a password management system to manage my account passwords.</td>
             <td>
               <% if device.q6_improved %>
                 <%= image_tag "check.png", :size=>"20x20", :class=>'img-responsive'%>  
@@ -204,13 +207,15 @@
               device.q1_improved_2.nil? %>
             <tr><td>Good job! No improvement is needed for your devices</td></tr>
         <% end %>
+        </tbody>
     </table>
   </div>
   <div class='col'>
     <h4>Your Partner</h4>
-    <table>
+    <table class="table-hover">
+    <tbody>
     <% @user.partner.user_apps.each do |user_app|%>
-        <td><strong><%= App.find(user_app.app_id).name.capitalize %></strong></td>
+        <th><strong><%= App.find(user_app.app_id).name.capitalize %></strong></th>
         <% if !user_app.q1_improved.nil? %>
         <tr>
           <td>I have installed a multi-factor authentication for this account.</td>
@@ -315,14 +320,16 @@
               user_app.q3_improved.nil? && user_app.q4_improved.nil? &&
               user_app.q5_improved.nil? && user_app.q6_mine_improved.nil? &&
               user_app.q6_partner_improved.nil? && user_app.q6_public_improved.nil? %>
-            <tr><td>Good job! No improvement is needed for this account</td></tr>
+            <tr><td>Good job! No improvement is needed for this account</td>
+                <td></td>
+            </tr>
         <% end %>
     <% end %>
       <td><strong>Devices</strong></td>
       <% device = @user.partner.device %>
         <% if !device.q1_improved.nil? %>
           <tr>
-            <td>I started to use a password management system to manage my account passwords.<td>
+            <td>I started to use a password management system to manage my account passwords.</td>
             <td>
               <% if device.q1_improved %>
                 <%= image_tag "check.png", :size=>"20x20", :class=>'img-responsive'%>  
@@ -334,7 +341,7 @@
         <% end %>
         <% if !device.q1_improved_2.nil? %>
           <tr>
-            <td>I started to use a password management system to manage my account passwords.<td>
+            <td>I started to use a password management system to manage my account passwords.</td>
             <td>
               <% if device.q1_improved_2 %>
                 <%= image_tag "check.png", :size=>"20x20", :class=>'img-responsive'%>  
@@ -346,7 +353,7 @@
         <% end %>
         <% if !device.q2_improved.nil? %>
           <tr>
-            <td>I started to use a password management system to manage my account passwords.<td>
+            <td>I started to use a password management system to manage my account passwords.</td>
             <td>
               <% if device.q2_improved %>
                 <%= image_tag "check.png", :size=>"20x20", :class=>'img-responsive'%>  
@@ -358,7 +365,7 @@
         <% end %>
         <% if !device.q3_improved.nil? %>
           <tr>
-            <td>I started to use a password management system to manage my account passwords.<td>
+            <td>I started to use a password management system to manage my account passwords.</td>
             <td>
               <% if device.q3_improved %>
                 <%= image_tag "check.png", :size=>"20x20", :class=>'img-responsive'%>  
@@ -370,7 +377,7 @@
         <% end %>
         <% if !device.q4_improved.nil? %>
           <tr>
-            <td>I started to use a password management system to manage my account passwords.<td>
+            <td>I started to use a password management system to manage my account passwords.</td>
             <td>
               <% if device.q4_improved %>
                 <%= image_tag "check.png", :size=>"20x20", :class=>'img-responsive'%>  
@@ -382,7 +389,7 @@
         <% end %>
         <% if !device.q5_improved.nil? %>
           <tr>
-            <td>I started to use a password management system to manage my account passwords.<td>
+            <td>I started to use a password management system to manage my account passwords.</td>
             <td>
               <% if device.q5_improved %>
                 <%= image_tag "check.png", :size=>"20x20", :class=>'img-responsive'%>  
@@ -394,7 +401,7 @@
         <% end %>
         <% if !device.q6_improved.nil? %>
           <tr>
-            <td>I started to use a password management system to manage my account passwords.<td>
+            <td>I started to use a password management system to manage my account passwords.</td>
             <td>
               <% if device.q6_improved %>
                 <%= image_tag "check.png", :size=>"20x20", :class=>'img-responsive'%>  
@@ -410,6 +417,7 @@
               device.q1_improved_2.nil? %>
             <tr><td>Good job! No improvement is needed for your devices</td></tr>
         <% end %>
+        </tbody>
     </table>
   </div>
 </div>

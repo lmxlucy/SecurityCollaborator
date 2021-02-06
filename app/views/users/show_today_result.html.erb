@@ -1,103 +1,138 @@
 <h4> Your Security Evaluation <%= @message.date %></h4>
 <% if !@message.alerts.empty? %>
-    </br><h5> Alerts </h5>
-    <% @message.alerts.each do |alert| %>
-        <% if (alert.include? 'Please click here for a security checklist.') || 
-            (alert.include? 'Please click here to learn how to set up strong password and update it as soon as possible!') %>
-            <% m = alert.split('here') %>
-            <% if alert.include? 'Please click here to learn how to set up strong password and update it as soon as possible!' %>
-                - <%= m.first %> <button type="button" class="btn-hover" 
-                data-toggle="tooltip" data-placement="top" 
-                title="A strong password contains at least 8 characters, 
-                a mixture both uppercase and lowercase letters, 
-                a mixture of letters and numbers, and include at least one special 
-                character (eg. !, @, #, ?)">here</button> <%= m.last %></br>
-            <% else %>
-                - <%= m.first %> <button type="button" class="btn-hover" data-toggle="tooltip" 
-                data-placement="top" title="You should check if 
-                1) the device has a login passcode, PIN or fingerprint 
-                2) the device has a latest operating system 
-                3) the device is auto-lock after a certain period of time">here</button> <%= m.last %></br>
-            <% end %> 
-        <% else %>
-            - <%= alert %></br>
-        <% end %>
-    <% end %>
+    <div class="card border-0">
+        <div class="card-title">
+            </br>
+            <%=image_tag "alert.png", :size=> "35x35", :class=> "rounded float-left responsive", :alt=> "reminder"%>
+            <h5 class="text-danger1"> Alerts </h5>
+        </div>
+        <div class="card-body">
+            <h6> <strong> Application Alerts </strong> </h6>
+            <div class="card-body">
+            <% @message.alerts.each do |alert| %>
+                <% if (alert.include? 'Please click here for a security checklist.') || 
+                    (alert.include? 'Please click here to learn how to set up strong password and update it as soon as possible!') %>
+                    <% m = alert.split('here') %>
+                    <% if alert.include? 'Please click here to learn how to set up strong password and update it as soon as possible!' %>
+                        &#8226 <%= m.first %> <button type="button" class="btn-hover" 
+                        data-toggle="tooltip" data-placement="top" 
+                        title="A strong password contains at least 8 characters, 
+                        a mixture both uppercase and lowercase letters, 
+                        a mixture of letters and numbers, and include at least one special 
+                        character (eg. !, @, #, ?)">here</button> <%= m.last %></br>
+                    <% else %>
+                        &#8226 <%= m.first %> <button type="button" class="btn-hover" data-toggle="tooltip" 
+                        data-placement="top" title="You should check if 
+                        1) the device has a login passcode, PIN or fingerprint 
+                        2) the device has a latest operating system 
+                        3) the device is auto-lock after a certain period of time">here</button> <%= m.last %></br>
+                    <% end %> 
+                <% else %>
+                    &#8226 <%= alert %></br>
+                <% end %>
+            <% end %>
+            </div>
+            </br><h6> <strong> Device Alerts </strong> </h6>
+                <% if !@message.device_alerts.empty? %>
+                <div class="card border-0">
+                    <div class="card-body">
+                        <% @message.device_alerts.each do |d_alert| %>
+                            &#8226 <%= auto_link(d_alert, :html => { :target => '_blank'}) %></br>
+                        <% end %>
+                    </div>
+                </div>
+                <% end %> 
+            
+        </div>
+    </div>
 <% end %>
 <% if !@message.reminders.empty? %>
-    </br><h5> Reminders </h5>
-    <% @message.reminders.each do |reminder| %>
-        <% if (reminder.include? 'Please click here for a security checklist.') || 
-            (reminder.include? 'Please click here to learn how to set up strong password and update it as soon as possible!') %>
-            <% m = reminder.split('here') %>
-            <% if reminder.include? 'Please click here to learn how to set up strong password and update it as soon as possible!' %>
-                - <%= m.first %> <button type="button" class="btn-hover" 
-                data-toggle="tooltip" data-placement="top" 
-                title="A strong password contains at least 8 characters, 
-                a mixture both uppercase and lowercase letters, 
-                a mixture of letters and numbers, and include at least one 
-                special character (eg. !, @, #, ?)">here</button> <%= m.last %></br>
-            <% else %>
-                - <%= m.first %> <button type="button" class="btn-hover" 
-                data-toggle="tooltip" data-placement="top" title="You should check if 
-                1) the device has a login passcode, PIN or fingerprint 
-                2) the device has a latest operating system 
-                3) the device is auto-lock after a certain period of time">here</button> <%= m.last %></br>
-            <% end %> 
-        <% else %>
-            - <%= reminder %></br>
-        <% end %>
-    <% end %>
+    <div class="card border-0">
+        <div class="card-title">
+            <%=image_tag "reminder.png", :size=> "35x35", :class=> "rounded float-left responsive", :alt=> "reminder"%>
+            <h5 class="text-warning1"> Reminders </h5>
+        </div>
+        <div class="card-body">
+            <h6> <strong> Application Reminders </strong> </h6>
+            <div class="card-body">
+            <% @message.reminders.each do |reminder| %>
+                <% if (reminder.include? 'Please click here for a security checklist.') || 
+                    (reminder.include? 'Please click here to learn how to set up strong password and update it as soon as possible!') %>
+                    <% m = reminder.split('here') %>
+                    <% if reminder.include? 'Please click here to learn how to set up strong password and update it as soon as possible!' %>
+                        &#8226 <%= m.first %> <button type="button" class="btn-hover" 
+                        data-toggle="tooltip" data-placement="top" 
+                        title="A strong password contains at least 8 characters, 
+                        a mixture both uppercase and lowercase letters, 
+                        a mixture of letters and numbers, and include at least one 
+                        special character (eg. !, @, #, ?)">here</button> <%= m.last %></br>
+                    <% else %>
+                        &#8226 <%= m.first %> <button type="button" class="btn-hover" 
+                        data-toggle="tooltip" data-placement="top" title="You should check if 
+                        1) the device has a login passcode, PIN or fingerprint 
+                        2) the device has a latest operating system 
+                        3) the device is auto-lock after a certain period of time">here</button> <%= m.last %></br>
+                    <% end %> 
+                <% else %>
+                    &#8226 <%= reminder %></br>
+                <% end %>
+            <% end %>
+            </div>
+            </br><h6> <strong> Device Reminders </strong> </h6>
+                <% if !@message.device_reminders.empty? %>
+                <div class="card border-0">
+                    <div class=" card-body ">
+                        <% @message.device_reminders.each do |d_reminder| %>
+
+                            &#8226 <%= auto_link(d_reminder, :html => { :target => '_blank'}) %></br>
+                        <% end %>
+                    </div>
+                </div>
+                <% end %>
+        </div>
+    </div>
 <% end %>
-<% if !@message.device_alerts.empty? %>
-    </br><h5> Device Alerts </h5>
-    <% @message.device_alerts.each do |d_alert| %>
-        - <%= auto_link(d_alert, :html => { :target => '_blank'}) %></br>
-    <% end %>
-<% end %>
-<% if !@message.device_reminders.empty? %>
-    </br><h5> Device Reminders </h5>
-    <% @message.device_reminders.each do |d_reminder| %>
-        - <%= auto_link(d_reminder, :html => { :target => '_blank'}) %></br>
-    <% end %>
-<% end %>
+
 <% if !@message.perfect.empty? %>
     </br><h5><%= @message.perfect %></h5>
 <% end %>
 <% if !@message.self_reflection.nil? and !@message.self_reflection.empty? %>
-    </br><h5> Self Reflection </h5>
+    <%=image_tag "self_reflection.png", :size=> "35x35", :class=> "rounded float-left responsive", :alt=> "reminder"%>
+    </br><h6><strong> Self Reflection </strong></h6>
     <%= @message.self_reflection %>
 <% end %>
 </br></br>
 
 <% if @message.self_reflection.nil? or @message.self_reflection.empty? %>
     <div class="row">
-    <div class="col s9">
-        <div class="card border-0">  
-        <div class="card-content">
-            <span class="card-title"><h4>Please write your thoughts on today's results</h4></span>
-            <div class="card-body">
-            <%= simple_form_for(current_user, :url => update_reflection_path, :method => :update) do |f| %>
-                <%= f.error_notification %>
-                <div class="row">
-                <div class="form-group">
-                    <%= f.fields_for :messages do |messages_form| %>
-                    <% if messages_form.object.date == @message.date %>
-                        <%= messages_form.text_area :self_reflection, required: true, label: false, rows: "4", cols: "50" %></br>
-                    <% end %>
-                    <% end %>
+        <div class="col s9">
+            <div class="card border-0">  
+                <div class="card-content">
+                <%=image_tag "self_reflection.png", :size=> "35x35", :class=> "rounded float-left responsive", :alt=> "reminder"%>
+                    <span class="card-title"><h6><strong>Please write your thoughts on today's results</strong></h6></span>
+                    <div class="card-body">
+                        <%= simple_form_for(current_user, :url => update_reflection_path, :method => :update) do |f| %>
+                            <%= f.error_notification %>
+                            <div class="row">
+                                <div class="form-group">
+                                    <%= f.fields_for :messages do |messages_form| %>
+                                        <% if messages_form.object.date == @message.date %>
+                                            <%= messages_form.text_area :self_reflection, required: true, label: false, rows: "4", cols: "50" %></br>
+                                        <% end %>
+                                    <% end %>
+                                </div>
+                            </div>
+                        
+                    </div>  
                 </div>
+            </div>
+            <div class="row">
+                <div class="form-actions col s9">
+                <%= f.button :submit, 'Submit', :class=>'btn btn-info' %>
                 </div>
-            </div>  
             </div>
+            <% end %>
         </div>
-        <div class="row">
-            <div class="form-actions col s9">
-            <%= f.button :submit, 'Submit', :class=>'btn btn-info' %>
-            </div>
-        </div>
-        <% end %>
-    </div>
     </div>
 <% else %>
     <% if current_user.partner %>

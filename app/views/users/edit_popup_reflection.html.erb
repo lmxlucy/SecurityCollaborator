@@ -3,7 +3,8 @@
     <div class="card border-0">  
       <div class="card-content">
         <% need_button = FALSE %>
-        <span class="card-title"><h4>Past Reflections</h4></span><br>
+        <%=image_tag "self_reflection.png", :size=> "35x35", :class=> "rounded float-left responsive", :alt=> "reminder"%>
+        <span class="card-title"><h5><strong>Past Reflections</strong></h5></span><br>
         <div class="form-group">
           <% current_user.messages.each do |message| %>
             <% if message.joint_reflection.nil? or message.joint_reflection.empty?%>
@@ -26,7 +27,7 @@
               <div class="form-group">
                 <%= f.fields_for :messages do |messages_form| %>
                   <% if messages_form.object.joint_reflection.nil? or messages_form.object.joint_reflection.empty?%>
-                    <%= messages_form.object.date %></br>
+                    <strong><%= messages_form.object.date %></strong></br>
                     <%= messages_form.text_area :joint_reflection, required: true, label: false, size: "40x20" %></br>
                   <% end %>
                 <% end %>
