@@ -1,19 +1,26 @@
 <h4>Welcome to Security Collaborator </h4>
 <h5>You: <%= current_user.email %> </h5>
-<% if current_user.partner %>
-    <h5>Partner: <%= current_user.partner.email %></h5>
-    </br></br>
-    <% if current_user.messages.count < 7 %>
-        <%= link_to "START TODAY'S EVALUATION", edit_user_apps_3_path(current_user), :class=>'btn btn-info' %> 
-        <%= link_to "ADD MORE ACCOUNTS", edit_apps_path(current_user.id), :class=>'btn btn-info' %>
-    <% end %>
-    <%= link_to "VIEW HISTORY", messages_path, :class=>'btn btn-info' %> 
-    <% if current_user.messages.count >= 7 %>
-        <%= link_to "SEE DETAILED REPORT", user_path(current_user.id), :class=>'btn btn-info' %> 
-    <% end %>
+<% if current_user.admin %>
+    <%= link_to "View All Messages", all_messages_path, :class=>'btn btn-info' %>
+    <%= link_to "View All User Apps", user_apps_path, :class=>'btn btn-info' %>
+    <%= link_to "View All Devices", devices_path, :class=>'btn btn-info' %>
+    <%= link_to "View All Users", users_path, :class=>'btn btn-info' %>
 <% else %>
-    <h5>Please add your partner first.</h5>
-    <%= link_to "ADD PARTNER", edit_user_path(current_user.id), :class=>'btn btn-info' %> 
+    <% if current_user.partner %>
+        <h5>Partner: <%= current_user.partner.email %></h5>
+        </br></br>
+        <% if current_user.messages.count < 7 %>
+            <%= link_to "START TODAY'S EVALUATION", edit_user_apps_3_path(current_user), :class=>'btn btn-info' %> 
+            <%= link_to "ADD MORE ACCOUNTS", edit_apps_path(current_user.id), :class=>'btn btn-info' %>
+        <% end %>
+        <%= link_to "VIEW HISTORY", messages_path, :class=>'btn btn-info' %> 
+        <% if current_user.messages.count >= 7 %>
+            <%= link_to "SEE DETAILED REPORT", user_path(current_user.id), :class=>'btn btn-info' %> 
+        <% end %>
+    <% else %>
+        <h5>Please add your partner first.</h5>
+        <%= link_to "ADD PARTNER", edit_user_path(current_user.id), :class=>'btn btn-info' %> 
+    <% end %>
 <% end %>
 <br><br>
 <%= link_to "SIGN OUT", destroy_user_session_path, method: :delete, :class=>'btn btn-info', style: "background-color: grey;" %> 
