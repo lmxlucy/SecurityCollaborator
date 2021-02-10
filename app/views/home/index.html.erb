@@ -5,6 +5,7 @@
     <%= link_to "View All User Apps", user_apps_path, :class=>'btn btn-info' %>
     <%= link_to "View All Devices", devices_path, :class=>'btn btn-info' %>
     <%= link_to "View All Users", users_path, :class=>'btn btn-info' %>
+    <%= link_to "View All Apps", apps_path, :class=>'btn btn-info' %>
 <% else %>
     <% if current_user.partner %>
         <h5>Partner: <%= current_user.partner.email %></h5>
