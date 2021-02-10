@@ -92,8 +92,7 @@ class UsersController < ApplicationController
     end
     messages=Message.all
     today_message = messages.find_by(user_id: current_user.id, date: Date.today)
-    message = Message.order("created_at").last
-    if message.nil?
+    if current_user.partner.nil?
       redirect_to edit_user_path(current_user)
     else
       if today_message.nil?
