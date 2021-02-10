@@ -90,7 +90,18 @@ class UsersController < ApplicationController
     existing.each do |app|
       UserApp.find_or_create_by(user_id: current_user.id, app_id: app.id)
     end
-    redirect_to edit_user_path(current_user)
+    messages=Message.all
+    today_message = messages.find_by(user_id: current_user.id, date: Date.today)
+    message = Message.order("created_at").last
+    if message.nil?
+      redirect_to edit_user_path(current_user)
+    else
+      if today_message.nil?
+        redirect_to edit_user_apps_1_path
+      else
+        redirect_to authenticated_root_path
+      end
+    end
   end
 
   def edit_user_apps_1
