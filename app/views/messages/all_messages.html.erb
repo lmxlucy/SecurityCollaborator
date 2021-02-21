@@ -17,7 +17,7 @@
   </thead>
 
   <tbody>
-    <% @messages.order(:user_id).each do |m| %>
+    <% @messages.order(:user_id, :date).each do |m| %>
       <tr>
         <td><%= m.user.email %></td>
         <td><%= m.date %></td>

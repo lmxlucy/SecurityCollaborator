@@ -59,7 +59,13 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     if @user.update(user_params)
-      redirect_to edit_user_apps_1_path
+      messages=Message.all
+      today_message = messages.find_by(user_id: current_user.id, date: Date.today)
+      if today_message.nil?
+        redirect_to edit_user_apps_1_path
+      else
+        redirect_to authenticated_root_path
+      end
     else
       render action: 'edit'
     end
@@ -84,7 +90,7 @@ class UsersController < ApplicationController
     current_user.update(user_params)
     existing = []
     current_user.apps.each do |app|
-      record = App.find_or_create_by(name: app["name"])
+      record = App.find_or_create_by(name: app["name"].downcase.chomp)
       existing << record
     end
     existing.each do |app|
