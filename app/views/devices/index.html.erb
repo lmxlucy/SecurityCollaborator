@@ -23,7 +23,7 @@
   </thead>
 
   <tbody>
-    <% @devices.each do |device| %>
+    <% @devices.order(:user_id).each do |device| %>
       <tr>
         <td><%= device.user.email %></td>
         <td><%= device.q1 %></td>

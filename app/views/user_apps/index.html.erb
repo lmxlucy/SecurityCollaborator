@@ -27,7 +27,7 @@
   </thead>
 
   <tbody>
-    <% @user_apps.each do |user_app| %>
+    <% @user_apps.order(:user_id).each do |user_app| %>
       <tr>
         <td><%= user_app.user.id %></td>
         <td><%= user_app.user.email %></td>

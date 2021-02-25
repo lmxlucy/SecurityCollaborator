@@ -141,8 +141,7 @@ class UsersController < ApplicationController
   end
 
   def edit_user_apps_3
-    messages = Message.all
-    message = messages.find_by(user_id: current_user.id, date: Date.today-1)
+    message = Message.where(user_id: current_user.id).last
     if message.nil? || !message.perfect.empty?
       redirect_to edit_user_apps_1_path
     end
