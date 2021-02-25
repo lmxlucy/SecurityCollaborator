@@ -117,23 +117,11 @@
     <% end %>
       <td><strong>Devices</strong></td>
       <% device = @user.device %>
-        <% if !device.q1_improved.nil? %>
+        <% if !device.q1_improved.nil? || !device.q1_improved_2.nil?%>
           <tr>
             <td>I started to use a password management system to manage my account passwords.</td>
             <td>
-              <% if device.q1_improved %>
-                <%= image_tag "check.png", :size=>"20x20", :class=>'img-responsive'%>  
-              <% else %>
-                <%= image_tag "cross.png", :size=>"20x20", :class=>'img-responsive'%>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-        <% if !device.q1_improved_2.nil? %>
-          <tr>
-            <td>I started to use a password management system to manage my account passwords.</td>
-            <td>
-              <% if device.q1_improved_2 %>
+              <% if device.q1_improved || device.q1_improved_2 %>
                 <%= image_tag "check.png", :size=>"20x20", :class=>'img-responsive'%>  
               <% else %>
                 <%= image_tag "cross.png", :size=>"20x20", :class=>'img-responsive'%>
@@ -143,7 +131,7 @@
         <% end %>
         <% if !device.q2_improved.nil? %>
           <tr>
-            <td>I started to use a password management system to manage my account passwords.</td>
+            <td>I have set up a PIN, passcode or fingerprint to log in to my devices.</td>
             <td>
               <% if device.q2_improved %>
                 <%= image_tag "check.png", :size=>"20x20", :class=>'img-responsive'%>  
@@ -155,7 +143,7 @@
         <% end %>
         <% if !device.q3_improved.nil? %>
           <tr>
-            <td>I started to use a password management system to manage my account passwords.</td>
+            <td>I have set up auto-lock for my devices.</td>
             <td>
               <% if device.q3_improved %>
                 <%= image_tag "check.png", :size=>"20x20", :class=>'img-responsive'%>  
@@ -167,7 +155,7 @@
         <% end %>
         <% if !device.q4_improved.nil? %>
           <tr>
-            <td>I started to use a password management system to manage my account passwords.</td>
+            <td>I have updated my devices' operating systems to the latest versions.</td>
             <td>
               <% if device.q4_improved %>
                 <%= image_tag "check.png", :size=>"20x20", :class=>'img-responsive'%>  
@@ -179,7 +167,7 @@
         <% end %>
         <% if !device.q5_improved.nil? %>
           <tr>
-            <td>I started to use a password management system to manage my account passwords.</td>
+            <td>I have installed anti-virus software on all of my devices.</td>
             <td>
               <% if device.q5_improved %>
                 <%= image_tag "check.png", :size=>"20x20", :class=>'img-responsive'%>  
@@ -191,7 +179,7 @@
         <% end %>
         <% if !device.q6_improved.nil? %>
           <tr>
-            <td>I started to use a password management system to manage my account passwords.</td>
+            <td>I have checked and made sure that people who use my devices are using them securely </td>
             <td>
               <% if device.q6_improved %>
                 <%= image_tag "check.png", :size=>"20x20", :class=>'img-responsive'%>  
@@ -327,23 +315,11 @@
     <% end %>
       <td><strong>Devices</strong></td>
       <% device = @user.partner.device %>
-        <% if !device.q1_improved.nil? %>
+        <% if !device.q1_improved.nil? || !device.q1_improved_2.nil?%>
           <tr>
             <td>I started to use a password management system to manage my account passwords.</td>
             <td>
-              <% if device.q1_improved %>
-                <%= image_tag "check.png", :size=>"20x20", :class=>'img-responsive'%>  
-              <% else %>
-                <%= image_tag "cross.png", :size=>"20x20", :class=>'img-responsive'%>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-        <% if !device.q1_improved_2.nil? %>
-          <tr>
-            <td>I started to use a password management system to manage my account passwords.</td>
-            <td>
-              <% if device.q1_improved_2 %>
+              <% if device.q1_improved || device.q1_improved_2 %>
                 <%= image_tag "check.png", :size=>"20x20", :class=>'img-responsive'%>  
               <% else %>
                 <%= image_tag "cross.png", :size=>"20x20", :class=>'img-responsive'%>
@@ -353,7 +329,7 @@
         <% end %>
         <% if !device.q2_improved.nil? %>
           <tr>
-            <td>I started to use a password management system to manage my account passwords.</td>
+            <td>I have set up a PIN, passcode or fingerprint to log in to my devices.</td>
             <td>
               <% if device.q2_improved %>
                 <%= image_tag "check.png", :size=>"20x20", :class=>'img-responsive'%>  
@@ -365,7 +341,7 @@
         <% end %>
         <% if !device.q3_improved.nil? %>
           <tr>
-            <td>I started to use a password management system to manage my account passwords.</td>
+            <td>I have set up auto-lock for my devices.</td>
             <td>
               <% if device.q3_improved %>
                 <%= image_tag "check.png", :size=>"20x20", :class=>'img-responsive'%>  
@@ -377,7 +353,7 @@
         <% end %>
         <% if !device.q4_improved.nil? %>
           <tr>
-            <td>I started to use a password management system to manage my account passwords.</td>
+            <td>I have updated my devices' operating systems to the latest versions.</td>
             <td>
               <% if device.q4_improved %>
                 <%= image_tag "check.png", :size=>"20x20", :class=>'img-responsive'%>  
@@ -389,7 +365,7 @@
         <% end %>
         <% if !device.q5_improved.nil? %>
           <tr>
-            <td>I started to use a password management system to manage my account passwords.</td>
+            <td>I have installed anti-virus software on all of my devices.</td>
             <td>
               <% if device.q5_improved %>
                 <%= image_tag "check.png", :size=>"20x20", :class=>'img-responsive'%>  
@@ -401,7 +377,7 @@
         <% end %>
         <% if !device.q6_improved.nil? %>
           <tr>
-            <td>I started to use a password management system to manage my account passwords.</td>
+            <td>I have checked and made sure that people who use my devices are using them securely </td>
             <td>
               <% if device.q6_improved %>
                 <%= image_tag "check.png", :size=>"20x20", :class=>'img-responsive'%>  
