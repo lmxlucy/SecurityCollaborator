@@ -13,6 +13,7 @@
       <th>Device Reminders</th>
       <th>Self Reflection</th>
       <th>Joint Reflection</th>
+      <th></th>
     </tr>
   </thead>
 
@@ -27,6 +28,7 @@
         <td><%= m.device_reminders %></td>
         <td><%= m.self_reflection %></td>
         <td><%= m.joint_reflection %></td>
+        <td><%= link_to 'Edit', edit_message_path(m) %></td>
       </tr>
     <% end %>
   </tbody>
