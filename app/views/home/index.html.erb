@@ -1,4 +1,5 @@
 <h4>Welcome to Security Collaborator </h4>
+<h5><%= Date.today %></h5><br>
 <h5>You: <%= current_user.email %> </h5>
 <% if current_user.admin %>
     <%= link_to "View All Messages", all_messages_path, :class=>'btn btn-info' %>
