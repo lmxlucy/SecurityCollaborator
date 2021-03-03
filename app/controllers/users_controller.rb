@@ -162,7 +162,6 @@ class UsersController < ApplicationController
   def update_device_questions
     message = Message.find_or_create_by(user_id: current_user.id, date: Time.zone.today)
     if current_user.update(user_params)
-      EmailReminderMailer.notify_partner(current_user.partner).deliver
       redirect_to show_today_result_path
     else
       redirect_to edit_device_questions_path
